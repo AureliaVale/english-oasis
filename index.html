@@ -1,113 +1,255 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الواحة للإنجليزية - ورقلة</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الواحة للإنجليزية | منصة ودليل الأساتذة</title>
+  <style>
+    :root {
+      --primary-color: #1e3a8a;
+      --secondary-color: #0284c7;
+      --bg-color: #f8fafc;
+      --text-color: #1f2937;
+      --accent-color: #f59e0b;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    .main-nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .main-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+    .main-nav a:hover, .main-nav .highlight-space {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+      margin: 20px auto;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 1100px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .hero h2 {
+      color: var(--primary-color);
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    .section-container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .section-container h2 {
+      color: var(--primary-color);
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+    .location-badge {
+      background: #f1f5f9;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      border-right: 4px solid var(--secondary-color);
+    }
+    .english-quote {
+      border-right: 4px solid var(--accent-color);
+      padding-right: 15px;
+      margin-top: 20px;
+      font-style: italic;
+      color: #4b5563;
+      background: #fffbeb;
+      padding: 15px;
+      border-radius: 0 8px 8px 0;
+    }
+    .tutors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .tutor-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: var(--primary-color);
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+
+  <!-- استدعاء مكتبة Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
-    <!-- رأس الصفحة -->
-    <header class="site-header">
-        <div class="header-container">
-            <div class="logo-area">
-                <img src="logo.png" alt="شعار الواحة للإنجليزية" class="site-logo">
-                <h1>الواحة للإنجليزية 🌴</h1>
-            </div>
-            <nav class="header-nav">
-                <a href="#tutors-section">الأساتذة</a>
-                <a href="#register-section">تسجيل أستاذ</a>
-                <a href="#footer-contact" class="contact-btn">اتصل بنا</a>
-            </nav>
-        </div>
-    </header>
+  <!-- شريط التنقل العلوي -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>الواحة للإنجليزية</h1>
+      </div>
+      <nav class="main-nav">
+        <a href="#home">الرئيسية</a>
+        <a href="#about">من نحن</a>
+        <a href="#tutors-directory">دليل الأساتذة</a>
+        <a href="#history">التاريخ</a>
+        <a href="#tribune">منبر الأستاذ</a>
+        <a href="#space" class="highlight-space">فضاؤك</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- القسم الرئيسي الواحي -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <h2>فضاءك التعليمي الموثوق في ورقلة</h2>
-            <p>نربط الأولياء والطلبة بنخبة من أساتذة الدعم في: الإنجليزية العامة، الدعم المدرسي، التحضير لـ IELTS / TOEFL، والأغراض المحددة ESP.</p>
-        </div>
+  <!-- الواجهة الرئيسية -->
+  <main id="home">
+    <section class="hero">
+      <h2>مرحباً بكم في الواحة للإنجليزية</h2>
+      <p>منصتك المجتمعية الرائدة لربط الطلبة بأفضل أساتذة اللغة الإنجليزية في ورقلة وما حولها.</p>
     </section>
 
-    <!-- قسم عرض الأساتذة -->
-    <main class="main-container">
-        <section id="tutors-section" class="section-block">
-            <h2>نخبة الأساتذة المعتمدين</h2>
-            <div id="tutors-list" class="tutors-grid">
-                <!-- سيتم تعبئة الأساتذة تلقائياً عبر app.js -->
-            </div>
-        </section>
+    <!-- قسم من نحن والمكان -->
+    <section id="about" class="section-container">
+      <h2>من نحن</h2>
+      <p>منصة <strong>"الواحة للإنجليزية"</strong> هي فضاء تعليمي مجتمعي مستقل، يهدف إلى ربط الطلبة وأولياء الأمور بأساتذة اللغة الإنجليزية المتميزين لتقديم دعم تربوي فعال ومتابعة مستمرة.</p>
+      
+      <div class="location-badge">
+        <h3>📍 مركز النشاط</h3>
+        <p><strong>مركز بيت الأستاذ - بيت التلميذ (أونلاين وفي الحضور):</strong> جسر التواصل التربوي الذي يجمعنا لخدمة المتعلمين وتوفير بيئة تعليمية مثالية.</p>
+      </div>
+    </section>
 
-        <!-- قسم تسجّل الأستاذ -->
-        <section id="register-section" class="section-block form-section">
-            <h2>تسجيل أستاذ جديد</h2>
-            <form id="tutor-form" onsubmit="registerTutor(event)">
-                <div class="form-group">
-                    <label for="tutor-name">الاسم الكامل:</label>
-                    <input type="text" id="tutor-name" required placeholder="اسم الأستاذ أو الأستاذة">
-                </div>
+    <!-- قسم دليل الأساتذة (متصل بقاعدة البيانات) -->
+    <section id="tutors-directory" class="section-container">
+      <h2>دليل الأساتذة</h2>
+      <p>ابحث عن الأستاذ المناسب لمستواك الدراسي وتواصل معه مباشرة:</p>
+      
+      <div id="tutors-list-container" class="tutors-grid">
+        <p>جاري تحميل قائمة الأساتذة من قاعدة البيانات...</p>
+      </div>
+    </section>
 
-                <div class="form-group">
-                    <label for="tutor-subject">التخصص / المادة:</label>
-                    <select id="tutor-subject" required>
-                        <option value="">اختر التخصص...</option>
-                        <option value="الدعم المدرسي">الدعم المدرسي</option>
-                        <option value="الإنجليزية العامة (General English)">الإنجليزية العامة (General English)</option>
-                        <option value="التحضير لـ IELTS / TOEFL">التحضير لـ IELTS / TOEFL</option>
-                        <option value="الإنجليزية لأغراض محددة (ESP)">الإنجليزية لأغراض محددة (ESP)</option>
-                    </select>
-                </div>
+    <!-- قسم التاريخ -->
+    <section id="history" class="section-container">
+      <h2>التاريخ</h2>
+      <p>محطات مسيرتنا التربوية في مرافقة أجيال المتعلمين، وتوثيق المبادرات التعليمية الهادفة لتطوير كفاءات اللغة الإنجليزية وبناء جسور التفوق في المنطقة.</p>
+    </section>
 
-                <div class="form-group">
-                    <label for="tutor-stage">الطور التعليمي / الفئة:</label>
-                    <input type="text" id="tutor-stage" required placeholder="مثال: ابتدائي، متوسط، ثانوي، جامعي...">
-                </div>
+    <!-- قسم منبر الأستاذ والمقولة -->
+    <section id="tribune" class="section-container">
+      <h2>منبر الأستاذ</h2>
+      <p>مساحة لمقالات الرأي، التوجيهات البيداغوجية، وخبرات الميدان التعليمي لمشاركة العصارة والمعرفة بين الأساتذة والمهتمين.</p>
+      
+      <blockquote class="english-quote">
+        "Education is not the filling of a pail, but the lighting of a fire." 
+        <br><small style="font-style: normal; font-weight: bold; color: #1f2937;">— William Butler Yeats</small>
+      </blockquote>
+    </section>
 
-                <div class="form-group">
-                    <label for="tutor-municipality">البلدية / المنطقة:</label>
-                    <select id="tutor-municipality" required>
-                        <option value="">اختر البلدية...</option>
-                        <option value="ورقلة (المركز)">ورقلة (المركز)</option>
-                        <option value="الرويسات">الرويسات</option>
-                        <option value="عين البيضاء">عين البيضاء</option>
-                        <option value="سيدي خويلد">سيدي خويلد</option>
-                        <option value="حاسي بن عبد الله">حاسي بن عبد الله</option>
-                        <option value="نقوسة">نقوسة</option>
-                        <option value="حاسي مسعود">حاسي مسعود</option>
-                        <option value="البرمة">البرمة</option>
-                        <option value="منطقة أخرى">منطقة أخرى</option>
-                    </select>
-                </div>
+    <!-- قسم فضاؤك -->
+    <section id="space" class="section-container">
+      <h2>فضاؤك</h2>
+      <p>مساحة تفاعلية مخصصة لك، تتيح لك التفاعل مع المواد التربوية، الاستفادة من الموارد الرقمية، والانضمام إلى مجتمع الواحة بكل ترحيب.</p>
+    </section>
+  </main>
 
-                <div class="form-group">
-                    <label for="tutor-neighborhood">الحي أو السكن (اختياري):</label>
-                    <input type="text" id="tutor-neighborhood" placeholder="مثال: حي النصر، المخادمة...">
-                </div>
+  <!-- تذييل الصفحة -->
+  <footer>
+    <p>جميع الحقوق محفوظة © 2026 - الواحة للإنجليزية</p>
+  </footer>
 
-                <div class="form-group">
-                    <label for="tutor-contact">رقم الهاتف أو وسيلة التواصل:</label>
-                    <input type="text" id="tutor-contact" required placeholder="رقم الهاتف أو البريد">
-                </div>
+  <!-- السكريبت الخاص بالاتصال وجلب البيانات من Supabase -->
+  <script src="config.js"></script>
+  <script>
+    // جلب الأساتذة وعرضهم في الدليل تلقائياً عند تحميل الصفحة
+    async function loadTutors() {
+      const container = document.getElementById('tutors-list-container');
+      
+      try {
+        const { data: tutors, error } = await window.supabaseClient
+          .from('tutors')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-                <button type="submit" class="submit-btn">تسجيل الانضمام</button>
-            </form>
-        </section>
-    </main>
+        if (error) {
+          throw error;
+        }
 
-    <!-- تذييل الصفحة (الفوتر) -->
-    <footer id="footer-contact" class="site-footer">
-        <div class="footer-content">
-            <p>لاستفساراتكم وتواصلكم معنا، نرحب بكم دائماً عبر صفحتنا الرسمية:</p>
-            <a href="https://www.facebook.com" target="_blank" class="fb-link">زوروا صفحتنا على الفيسبوك</a>
-            <p class="copyright">© 2026 الواحة للإنجليزية - ورقلة. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
+        if (!tutors || tutors.length === 0) {
+          container.innerHTML = '<p>لا يوجد أساتذة مسجلين حالياً. كن أول من يسجل!</p>';
+          return;
+        }
 
-    <!-- ملفات الجافاسكريبت -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="config.js"></script>
-    <script src="app.js"></script>
+        container.innerHTML = '';
+        tutors.forEach(tutor => {
+          const card = document.createElement('div');
+          card.className = 'tutor-card';
+          card.innerHTML = `
+            <h3>${tutor.name || 'أستاذ'}</h3>
+            <p><strong>المادة:</strong> ${tutor.subject || 'إنجليزية'}</p>
+            <p><strong>المستوى الدراسي:</strong> ${tutor.stage || 'غير محدد'}</p>
+            <p><strong>المنطقة:</strong> ${tutor.municipality || ''} - ${tutor.neighborhood || ''}</p>
+            <p><strong>التواصل:</strong> ${tutor.contact || 'غير متوفر'}</p>
+          `;
+          container.appendChild(card);
+        });
+
+      } catch (err) {
+        console.error('Error fetching tutors:', err);
+        container.innerHTML = '<p style="color: red;">تعذر تحميل قائمة الأساتذة حالياً. تأكد من اتصال قاعدة البيانات.</p>';
+      }
+    }
+
+    // تنفيذ الدالة عند فتح الصفحة
+    window.addEventListener('DOMContentLoaded', loadTutors);
+  </script>
 </body>
 </html>
