@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Oasis | الواحة للإنجليزية - ورقلة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- الشريط العلوي -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <span id="current-date" class="date-display"></span>
+            <div class="wisdom-ticker">
+                <p>💡 "اقْرَأْ وَرَبُّكَ الْأَكْرَمُ" — "Seek knowledge from the cradle to the grave."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- الهيدر -->
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="logo-area">
+                <div class="site-logo-icon">🌴</div>
+                <div class="site-titles">
+                    <h1>English Oasis</h1>
+                    <span class="arabic-subtitle">الواحة للإنجليزية</span>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <a href="#about">من نحن</a>
+                <a href="#tutors">دليل أساتذة الدعم</a>
+                <a href="#register-section" class="nav-register-btn">سجل كأستاذ دعم</a>
+                <a href="https://m.me/ouargla.english.oasis" target="_blank" class="nav-contact-btn">اتصل بنا (ماسنجر)</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-container container">
+        
+        <!-- قسم من نحن -->
+        <section class="intro-section" id="about">
+            <h2>فضاء يصل الولي بأستاذ الدعم لمادة الإنجليزية</h2>
+            <p>
+                نرحب بكم في <strong>الواحة للإنجليزية</strong>؛ بوابتكم الموثوقة في ورقلة لربط الأولياء بنخبة من <strong>أساتذة الدعم الأكفاء</strong> عبر كل الأطوار التعليمية، 
+                وكذا المقبلين على اختبارات الـ IELTS و TOEFL، والراغبين في تعلم الإنجليزية لأغراض محددة (ESP).
+            </p>
+        </section>
+
+        <!-- قسم عرض الأساتذة -->
+        <section class="tutors-section" id="tutors">
+            <h2>دليل أساتذة الدعم المعتمدين</h2>
+            <div id="tutors-container" class="grid-container">
+                <p class="loading-text">جاري تحميل قائمة الأساتذة...</p>
+            </div>
+        </section>
+
+        <!-- قسم تسجيل الأساتذة (نموذج ذاتي) -->
+        <section class="register-section" id="register-section">
+            <div class="register-card">
+                <h2>انضم إلى نخبة أساتذة الواحة للإنجليزية</h2>
+                <p>سجل بياناتك معنا لتكون ضمن الدليل (خصوصية رقمك محفوظة، والتواصل يتم عبر الماسنجر الخاص بك).</p>
+                
+                <form id="tutor-register-form" class="tutor-form">
+                    <div class="form-group">
+                        <label for="tutor-name">الاسم الكامل للأستاذ:</label>
+                        <input type="text" id="tutor-name" required placeholder="مثال: الأستاذ محمد بن علي">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service-type">نوع الخدمة التعليمية:</label>
+                        <select id="service-type" required>
+                            <option value="">اختر نوع الخدمة...</option>
+                            <option value="دعم مدرسي">دعم مدرسي</option>
+                            <option value="أغراض خاصة ESP">أغراض خاصة (ESP)</option>
+                            <option value="تحضير IELTS/TOEFL">تحضير اختبارات IELTS / TOEFL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="school-level">المستوى الدراسي:</label>
+                        <select id="school-level">
+                            <option value="جميع الأطوار">جميع الأطوار / عام</option>
+                            <option value="روضة وابتدائي">روضة وابتدائي</option>
+                            <option value="متوسط">متوسط</option>
+                            <option value="ثانوي">ثانوي</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location-type">مكان تقديم الدعم:</label>
+                        <select id="location-type" required>
+                            <option value="في المركز">في المركز</option>
+                            <option value="في منزل الأستاذ">في منزل الأستاذ</option>
+                            <option value="في منزل التلميذ">في منزل التلميذ</option>
+                            <option value="أونلاين">أونلاين</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="messenger-link">رابط الماسنجر الخاص بك (للتواصل الآمن):</label>
+                        <input type="url" id="messenger-link" placeholder="مثال: https://m.me/your.username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tutor-bio">نبذة مختصرة أو خبرتك المهنية:</label>
+                        <textarea id="tutor-bio" rows="3" placeholder="اكتب نبذة قصيرة تعريفيّة..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">إرسال طلب التسجيل</button>
+                    <p id="form-message" class="form-msg"></p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- نافذة تقييم التجربة -->
+    <div id="rating-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <h3>قيم تجربتك التربوية</h3>
+            <p id="modal-desc">يسعدنا جداً سماع رأيك حول حصص الدعم وتجربتك مع الأستاذ. انقر أدناه للانتقال إلى صفحة الفيسبوك ومشاركة تقييمك في التعليقات.</p>
+            
+            <div class="modal-actions">
+                <button onclick="goToFacebookRating()" class="fb-go-btn">الانتقال إلى صفحة الفيسبوك للتقييم</button>
+                <button onclick="closeRatingModal()" class="close-modal-btn">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>لاستفساراتكم، تواصلوا معنا عبر <a href="https://www.facebook.com/ouargla.english.oasis/" target="_blank" class="footer-fb-link">صفحة الفيسبوك الرسمية</a>.</p>
+            <p class="copyrights">&copy; 2026 English Oasis - الواحة للإنجليزية. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
