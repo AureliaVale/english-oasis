@@ -1,136 +1,228 @@
-:root {
-    --primary-green: #1b4332;
-    --accent-gold: #d4af37;
-    --bg-cream: #fbfbfa;
-    --text-dark: #2b2b2b;
-    --white: #ffffff;
-    --border-color: #e2e8f0;
+/* التنسيقات العامة والخطوط */
+html {
+    scroll-behavior: smooth;
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Amiri', 'Plus Jakarta Sans', serif;
-    background-color: var(--bg-cream);
-    color: var(--text-dark);
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
+    background-color: #f7fafc;
+    color: #2d3748;
+    margin: 0;
+    padding: 0;
     direction: rtl;
+    line-height: 1.6;
 }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-.top-bar {
-    background-color: var(--primary-green);
-    color: var(--accent-gold);
-    font-size: 0.9rem;
-    padding: 8px 0;
-    border-bottom: 2px solid var(--accent-gold);
-}
-
-.top-bar-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-.wisdom-ticker p { font-style: italic; color: var(--white); }
-
+/* الهيدر */
 .site-header {
-    background-color: var(--white);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    background-color: #1a365d;
+    color: #ffffff;
+    padding: 15px 20px;
+    border-bottom: 4px solid #d69e2e;
 }
 
-.header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-.logo-area { display: flex; align-items: center; gap: 12px; }
-
-.site-logo-icon {
-    font-size: 1.8rem;
-    background-color: rgba(212, 175, 55, 0.15);
-    width: 42px;
-    height: 42px;
+.header-container {
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    border: 1px solid var(--accent-gold);
-}
-
-.site-titles h1 { font-size: 1.5rem; color: var(--primary-green); margin-bottom: -5px; }
-.arabic-subtitle { font-size: 0.95rem; color: var(--accent-gold); font-weight: bold; }
-
-.main-nav { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
-.main-nav a { text-decoration: none; color: var(--text-dark); font-weight: 600; transition: color 0.3s; }
-.main-nav a:hover { color: var(--accent-gold); }
-.nav-register-btn { background-color: rgba(212, 175, 55, 0.15); color: #997a15 !important; padding: 8px 12px; border-radius: 6px; }
-.nav-contact-btn { background-color: var(--primary-green); color: var(--white) !important; padding: 8px 15px; border-radius: 6px; }
-
-.main-container { padding: 40px 20px; }
-.intro-section, .tutors-section, .register-section, .register-card {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    margin-bottom: 40px;
-}
-.intro-section { border-right: 5px solid var(--accent-gold); }
-.intro-section h2, .tutors-section h2, .register-section h2 { color: var(--primary-green); margin-bottom: 15px; }
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin-bottom: 20px;
-}
-
-.tutor-card {
-    background: var(--white);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    border-top: 4px solid var(--primary-green);
+    align-items: center;
 }
 
-.tutor-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-.form-group { display: flex; flex-direction: column; gap: 5px; }
-.form-group label { font-weight: bold; font-size: 0.95rem; color: var(--primary-green); }
-.form-group input, .form-group select, .form-group textarea {
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 1rem;
-    background-color: var(--bg-cream);
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
-.submit-btn {
-    background-color: var(--primary-green);
-    color: var(--white);
-    border: none;
-    padding: 12px;
-    border-radius: 6px;
+
+.site-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #d69e2e;
+}
+
+.site-header h1 {
+    font-size: 22px;
+    margin: 0;
+    color: #fff;
+}
+
+.header-nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.header-nav a {
+    color: #fff;
+    text-decoration: none;
     font-weight: bold;
+    font-size: 14px;
+}
+
+.header-nav a:hover {
+    color: #d69e2e;
+}
+
+.contact-btn {
+    background-color: #d69e2e;
+    color: #1a365d !important;
+    padding: 6px 14px;
+    border-radius: 4px;
+}
+
+/* قسم البطل (Hero) */
+.hero-section {
+    background-color: #2f855a;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero-content max-width {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-section h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* الحاويات الرئيسية والبطاقات */
+.main-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.section-block {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.section-block h2 {
+    color: #276749;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* تنسيق بطاقة الأستاذ وتخطيطها المرن */
+.tutor-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-right: 5px solid #2f855a;
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.tutor-info h3 {
+    margin: 0 0 5px 0;
+    color: #1a365d;
+}
+
+.tutor-info p {
+    margin: 3px 0;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+/* مربع التقييم على اليسار */
+.tutor-review-box {
+    background: #f0fff4;
+    border: 1px dashed #38a169;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    min-width: 160px;
+}
+
+.rate-btn {
+    background-color: #2b6cb0;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100%;
 }
-.form-msg { text-align: center; font-weight: bold; font-size: 0.95rem; margin-top: 10px; }
 
-/* النافذة المنبثقة للتقييم */
-.modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 1000;
+.rate-btn:hover {
+    background-color: #2c5282;
 }
-.modal-card {
-    background: var(--white); padding: 30px; border-radius: 12px; max-width: 420px; width: 90%;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; border-top: 5px solid var(--accent-gold);
-}
-.modal-card h3 { color: var(--primary-green); margin-bottom: 12px; }
-.modal-card p { color: #555; font-size: 0.95rem; margin-bottom: 20px; }
-.modal-actions { display: flex; flex-direction: column; gap: 10px; }
-.fb-go-btn { background-color: #1877f2; color: var(--white); border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; }
-.close-modal-btn { background: transparent; border: 1px solid #ccc; color: #666; padding: 8px; border-radius: 6px; cursor: pointer; }
 
-.site-footer { background-color: var(--primary-green); color: var(--white); text-align: center; padding: 30px 0; margin-top: 60px; }
-.footer-content { display: flex; flex-direction: column; gap: 10px; align-items: center; }
-.footer-fb-link { color: var(--accent-gold); text-decoration: underline; }
-.copyrights { font-size: 0.85rem; color: #d1d5db; }
+/* نماذج الإدخال */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.submit-btn {
+    background-color: #2f855a;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    background-color: #276749;
+}
+
+/* الفوتر */
+.site-footer {
+    background-color: #1a365d;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 50px;
+}
+
+.footer-content .fb-link {
+    display: inline-block;
+    background-color: #d69e2e;
+    color: #1a365d;
+    padding: 8px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.copyright {
+    font-size: 12px;
+    color: #a0aec0;
+    margin-top: 15px;
+}
