@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الواحة للإنجليزية - دليل أساتذة اللغة الإنجليزية في ورقلة</title>
-    <!-- استيراد خط عربي أنيق ومتناسق -->
+    <title>الواحة للإنجليزية (English Oasis) - ورقلة</title>
+    <!-- خط Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- مكتبة الأيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-color: #0d5c46; /* أخضر واحة هادئ */
+            --primary-color: #0d5c46;
             --secondary-color: #f4f9f6;
             --accent-color: #d4a373;
             --text-color: #333333;
@@ -32,7 +32,7 @@
             line-height: 1.6;
         }
 
-        /* --- 1. الهيدر النظيف (بدون قوائم منسدلة، بدون زر الرئيسية) --- */
+        /* --- الهيدر النظيف بالشعار الفعلي --- */
         header {
             background: var(--white);
             border-bottom: 1px solid var(--border-color);
@@ -45,24 +45,30 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.8rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
             text-decoration: none;
             cursor: pointer;
+        }
+
+        .site-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 1.8rem;
             align-items: center;
         }
 
@@ -72,25 +78,14 @@
             font-weight: 600;
             transition: color 0.3s;
             cursor: pointer;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
             color: var(--primary-color);
         }
 
-        .btn-register {
-            background-color: var(--primary-color);
-            color: var(--white) !important;
-            padding: 0.5rem 1.2rem;
-            border-radius: 6px;
-            transition: background 0.3s;
-        }
-
-        .btn-register:hover {
-            background-color: #083b2d;
-        }
-
-        /* --- 2. شريط الإعلانات المتحرك في الأعلى --- */
+        /* --- الإعلان المتحرك (من اليسار لليمين) --- */
         .marquee-container {
             background-color: #fff3cd;
             color: #856404;
@@ -103,16 +98,15 @@
 
         .marquee-content {
             display: inline-block;
-            animation: marquee 25s linear infinite;
-            padding-left: 100%;
+            animation: marqueeRightToLeft 25s linear infinite;
         }
 
-        @keyframes marquee {
-            0% { transform: translate(0, 0); }
+        @keyframes marqueeRightToLeft {
+            0% { transform: translate(100%, 0); }
             100% { transform: translate(-100%, 0); }
         }
 
-        /* --- المحتوى العام --- */
+        /* --- الحاويات الرئيسية --- */
         .main-container {
             max-width: 1200px;
             margin: 2rem auto;
@@ -120,14 +114,13 @@
         }
 
         .page-section {
-            display: none; /* تُعرض الصفحة النشطة فقط عبر الجافاسكريبت */
+            display: none;
         }
 
         .page-section.active-page {
             display: block;
         }
 
-        /* قسم الترحيب */
         .hero-section {
             text-align: center;
             margin-bottom: 2rem;
@@ -141,10 +134,10 @@
 
         .hero-section p {
             color: #666;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
-        /* --- أدوات البحث والتصفية (دليل الأساتذة) --- */
+        /* --- قسم الفلاتر والمربعات (Checkboxes) --- */
         .filter-section {
             background: var(--white);
             padding: 1.5rem;
@@ -152,8 +145,8 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
             margin-bottom: 2rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
         }
 
         .filter-group {
@@ -163,48 +156,66 @@
         }
 
         .filter-group label {
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
             color: var(--primary-color);
         }
 
-        .filter-group input, .filter-group select {
+        .filter-group input[type="text"], .filter-group select {
             padding: 0.7rem;
             border: 1px solid var(--border-color);
             border-radius: 6px;
             font-size: 0.95rem;
-            outline: none;
             background: var(--white);
         }
 
-        .filter-group input:focus, .filter-group select:focus {
-            border-color: var(--primary-color);
+        .checkbox-group-container {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.6rem;
+            max-height: 130px;
+            overflow-y: auto;
+            background: #fafafa;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
         }
 
-        /* --- منبر الأستاذ في المنتصف --- */
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .checkbox-item input {
+            accent-color: var(--primary-color);
+            width: 16px;
+            height: 16px;
+        }
+
+        /* --- منبر الأستاذ --- */
         .teacher-tribune {
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             border-right: 5px solid var(--primary-color);
             padding: 1.2rem 1.5rem;
             border-radius: 8px;
             margin-bottom: 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
-        .tribune-text h3 {
+        .teacher-tribune h3 {
             color: var(--primary-color);
             font-size: 1.1rem;
             margin-bottom: 0.2rem;
         }
 
-        .tribune-text p {
+        .teacher-tribune p {
             font-size: 0.95rem;
             color: #444;
         }
 
-        /* --- دليل الأساتذة (البطاقات) --- */
+        /* --- بطاقات الأساتذة --- */
         .section-title {
             font-size: 1.5rem;
             color: var(--primary-color);
@@ -229,7 +240,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
         }
 
         .teacher-header {
@@ -254,7 +264,6 @@
 
         .teacher-info h4 {
             font-size: 1.1rem;
-            color: var(--text-color);
         }
 
         .teacher-info span {
@@ -299,49 +308,9 @@
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
-            transition: background 0.3s;
         }
 
-        .btn-contact:hover {
-            background-color: #083b2d;
-        }
-
-        .btn-rate-icon {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #d97706;
-            font-size: 1.2rem;
-            transition: transform 0.2s;
-            position: relative;
-        }
-
-        .btn-rate-icon:hover {
-            transform: scale(1.15);
-        }
-
-        .btn-rate-icon::after {
-            content: "قيم تجربتك مع الأستاذ";
-            position: absolute;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: #fff;
-            padding: 0.3rem 0.6rem;
-            font-size: 0.7rem;
-            border-radius: 4px;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s;
-        }
-
-        .btn-rate-icon:hover::after {
-            opacity: 1;
-        }
-
-        /* --- تصميم صفحة الإعلانات والباقات --- */
+        /* --- صفحة الإعلانات المستقلة --- */
         .ads-container {
             background: var(--white);
             padding: 2.5rem;
@@ -351,28 +320,11 @@
             margin: 0 auto;
         }
 
-        .ads-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .ads-header h2 {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .ads-header p {
-            color: #555;
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-bottom: 2.5rem;
+            margin: 2rem 0;
         }
 
         .pricing-card {
@@ -380,52 +332,18 @@
             border-radius: 10px;
             padding: 2rem;
             text-align: center;
-            transition: all 0.3s;
             background: var(--secondary-color);
         }
 
         .pricing-card.featured {
             border-color: var(--primary-color);
             background: var(--white);
-            box-shadow: 0 6px 12px rgba(13, 92, 70, 0.08);
-        }
-
-        .pricing-card h3 {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
         }
 
         .price {
             font-size: 2rem;
             font-weight: 700;
-            color: var(--text-color);
             margin: 1rem 0;
-        }
-
-        .price span {
-            font-size: 1rem;
-            color: #666;
-            font-weight: 400;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            color: #555;
-            text-align: right;
-        }
-
-        .pricing-features li {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .pricing-features i {
-            color: var(--primary-color);
         }
 
         .btn-whatsapp-book {
@@ -436,14 +354,8 @@
             border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
-            transition: background 0.3s;
             width: 100%;
             text-align: center;
-        }
-
-        .btn-whatsapp-book:hover {
-            background-color: #1ebe5d;
         }
 
         .payment-info {
@@ -452,18 +364,6 @@
             padding: 1.5rem;
             border-radius: 8px;
             margin-top: 2rem;
-        }
-
-        .payment-info h4 {
-            color: var(--primary-color);
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
-        }
-
-        .payment-info p {
-            font-size: 0.95rem;
-            color: #444;
-            margin-bottom: 0.4rem;
         }
 
         .rip-code {
@@ -476,7 +376,22 @@
             color: var(--primary-color);
         }
 
-        /* --- تذييل الصفحة (Footer) --- */
+        /* --- الصفحات الإضافية --- */
+        .content-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* --- التذييل (Footer) --- */
         footer {
             background-color: var(--primary-color);
             color: var(--white);
@@ -498,256 +413,257 @@
             display: flex;
             gap: 1.5rem;
             font-size: 0.95rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .footer-links a {
             color: var(--white);
             text-decoration: none;
-            transition: color 0.3s;
             cursor: pointer;
         }
 
         .footer-links a:hover {
             color: var(--accent-color);
         }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- 1. الهيدر النظيف -->
+    <!-- 1. الهيدر النظيف بالشعار الفعلي logo.png والترتيب المطلوب -->
     <header>
         <div class="nav-container">
-            <a class="logo" onclick="switchPage('home')">الواحة للإنجليزية</a>
+            <a class="logo-area" onclick="switchPage('home')">
+                <img src="logo.png" alt="الواحة للإنجليزية" class="site-logo">
+            </a>
             <ul class="nav-links">
+                <li><a onclick="switchPage('about')">من نحن</a></li>
                 <li><a onclick="switchPage('home')">دليل الأساتذة</a></li>
-                <li><a onclick="switchPage('ads')">الإعلانات والباقات</a></li>
-                <li><a onclick="alert('قسم من نحن قيد التحديث')">من نحن</a></li>
-                <li><a onclick="alert('يرجى التواصل عبر الواتساب لتسجيل الأستاذ')" class="btn-register">تسجيل الأستاذ</a></li>
+                <li><a onclick="switchPage('register')">تسجيل الأستاذ</a></li>
+                <li><a onclick="switchPage('contact')">اتصل بنا</a></li>
+                <li><a onclick="switchPage('tribune')">ركن الأستاذ</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- 2. شريط الإعلانات المتحرك في الأعلى -->
+    <!-- 2. الإعلان المتحرك (من اليسار لليمين) بالنص المحدث -->
     <div class="marquee-container">
         <div class="marquee-content">
-            🌟 إعلان مميز ومجاني: ترحيب خاص بالأستاذة المتقاعدة (فاطمة. ز) لتوفير حصص دعم استدراكية في الإنجليزية (متوسط وثانوي) ببلدية ورقلة المركز. تواصلوا معها عبر صفحتنا الرسمية! 🌟
+            الأستاذة حسيبة دريس تعلن عن توفير حصص دعم لمستويي الابتدائي والبكالوريا، للتواصل والاستفسار: 0675456162 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🌟 مرحباً بكم في منصة الواحة للإنجليزية بولاية ورقلة 🌟
         </div>
     </div>
 
-    <!-- المحتوى الرئيسي للمنصة -->
+    <!-- الحاويات الرئيسية للصفحات -->
     <div class="main-container">
 
-        <!-- ================= صفحة دليل الأساتذة والبحث (الصفحة الرئيسية) ================= -->
+        <!-- ================= أ. صفحة دليل الأساتذة والبحث ================= -->
         <div id="homePage" class="page-section active-page">
             <div class="hero-section">
                 <h1>دليل أساتذة اللغة الإنجليزية في ورقلة</h1>
-                <p>ابحث بسهولة عن الأستاذ المناسب لابنك أو ابنتك حسب المرحلة التعليمية، مكان الدعم، والبلدية.</p>
+                <p>منصة محلية مخصصة حصرياً للغة الإنجليزية تربط الطلبة والأولياء بأفضل الأساتذة.</p>
             </div>
 
-            <!-- أدوات البحث والتصفية -->
+            <!-- أدوات البحث والتصفية بمربعات الاختيار الصغيرة -->
             <div class="filter-section">
                 <div class="filter-group">
-                    <label for="searchName">البحث بالاسم</label>
+                    <label for="searchName">البحث باسم الأستاذ</label>
                     <input type="text" id="searchName" placeholder="اكتب اسم الأستاذ...">
                 </div>
+
+                <!-- خيارات متعددة لنوع الدعم عبر Checkboxes -->
                 <div class="filter-group">
-                    <label for="filterSupport">المرحلة / نوع الدعم</label>
-                    <select id="filterSupport">
-                        <option value="">الكل (جميع المستويات)</option>
-                        <option value="primary">الروضة والابتدائي</option>
-                        <option value="middle">المتوسط</option>
-                        <option value="bem">التحضير لشهادة التعليم المتوسط (BEM)</option>
-                        <option value="secondary">الثانوي</option>
-                        <option value="bac">التحضير لشهادة البكالوريا (BAC)</option>
-                        <option value="general">الإنجليزية العامة (General English)</option>
-                        <option value="ielts">IELTS</option>
-                        <option value="toefl">TOEFL</option>
-                        <option value="esp">ESP (أغراض محددة)</option>
-                    </select>
+                    <label>المرحلة / نوع الدعم (اختر عدة خيارات)</label>
+                    <div class="checkbox-group-container">
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="primary"> الروضة والابتدائي</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="middle"> المتوسط</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="bem"> تحضير BEM</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="secondary"> الثانوي</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="bac"> تحضير BAC</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="general"> الإنجليزية العامة</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="ielts"> IELTS / TOEFL</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="esp"> ESP (أغراض محددة)</label>
+                    </div>
                 </div>
+
+                <!-- خيارات متعددة لمكان الدعم عبر Checkboxes -->
                 <div class="filter-group">
-                    <label for="filterLocation">مكان الدعم</label>
-                    <select id="filterLocation">
-                        <option value="">الكل (جميع الأماكن)</option>
-                        <option value="center">في مركز</option>
-                        <option value="teacher-home">في منزل الأستاذ</option>
-                        <option value="student-home">في منزل التلميذ</option>
-                        <option value="online">أونلاين (Online)</option>
-                    </select>
+                    <label>مكان الدعم (اختر عدة خيارات)</label>
+                    <div class="checkbox-group-container">
+                        <label class="checkbox-item"><input type="checkbox" name="location" value="center"> في مركز</label>
+                        <label class="checkbox-item"><input type="checkbox" name="location" value="teacher-home"> في منزل الأستاذ</label>
+                        <label class="checkbox-item"><input type="checkbox" name="location" value="student-home"> في منزل التلميذ</label>
+                        <label class="checkbox-item"><input type="checkbox" name="location" value="online"> أونلاين (Online)</label>
+                    </div>
                 </div>
+
+                <!-- البلديات الخمس بدقة -->
                 <div class="filter-group">
                     <label for="filterMunicipality">البلدية</label>
                     <select id="filterMunicipality">
-                        <option value="">الكل (كل بلديات ورقلة)</option>
-                        <option value="ouargla">ورقلة المركز</option>
+                        <option value="">كل البلديات</option>
+                        <option value="ouargla">ورقلة</option>
                         <option value="rouissat">الروايسات</option>
-                        <option value="sidi-khouiled">سيدي خويلد</option>
                         <option value="hassi-messaoud">حاسي مسعود</option>
-                        <option value="ain-beida">عين البيضاء</option>
-                        <option value="hassi-ben-abdellah">حاسي بن عبد الله</option>
+                        <option value="ngoussa">عين أم غناس</option>
+                        <option value="el-borma">البرمة</option>
                     </select>
                 </div>
             </div>
 
-            <!-- منبر الأستاذ في المنتصف -->
+            <!-- منبر الأستاذ -->
             <div class="teacher-tribune">
-                <div class="tribune-text">
-                    <h3><i class="fa-solid fa-lightbulb"></i> منبر الأستاذ (ومضة تربوية)</h3>
-                    <p>"تعلم لغة جديدة هو امتلاك نافذة أخرى لرؤية العالم. دعونا نغرس الشغف بالإنجليزية في نفوس أبنائنا منذ الصغر."</p>
-                </div>
+                <h3><i class="fa-solid fa-lightbulb"></i> منبر الأستاذ (ومضة تربوية)</h3>
+                <p>"تعلم لغة جديدة هو امتلاك نافذة أخرى لرؤية العالم. دعونا نغرس الشغف بالإنجليزية في نفوس أبنائنا."</p>
             </div>
 
-            <!-- دليل الأساتذة -->
-            <h2 class="section-title">دليل الأساتذة</h2>
-            <div class="directory-grid" id="teachersGrid">
-                
-                <!-- بطاقة أستاذ 1 -->
+            <!-- شبكة الأساتذة -->
+            <h2 class="section-title">دليل الأساتذة المعتمدين</h2>
+            <div class="directory-grid">
                 <div class="teacher-card">
                     <div>
                         <div class="teacher-header">
-                            <div class="teacher-avatar">أ.م</div>
+                            <div class="teacher-avatar">ح.د</div>
                             <div class="teacher-info">
-                                <h4>أمين مسعودي</h4>
-                                <span>الثانوي + BAC</span>
+                                <h4>حسيبة دريس</h4>
+                                <span>الابتدائي + البكالوريا</span>
                             </div>
                         </div>
                         <div class="teacher-details">
-                            <div><i class="fa-solid fa-location-dot"></i> بلدية: ورقلة المركز</div>
-                            <div><i class="fa-solid fa-building-user"></i> مكان الدعم: في مركز / أونلاين</div>
-                            <div><i class="fa-solid fa-graduation-cap"></i> خبرة 8 سنوات في التحضير للبكالوريا</div>
+                            <div><i class="fa-solid fa-location-dot"></i> البلدية: ورقلة</div>
+                            <div><i class="fa-solid fa-building-user"></i> مكان الدعم: منزل الأستاذ / أونلاين</div>
+                            <div><i class="fa-solid fa-phone"></i> الهاتف: 0675456162</div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="https://www.facebook.com/ouargla.english.oasis" target="_blank" class="btn-contact"><i class="fa-brands fa-facebook-messenger"></i> تواصل مع الأستاذ</a>
-                        <button class="btn-rate-icon" onclick="rateTeacher('أمين مسعودي')" title="قيم تجربتك مع الأستاذ">
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                        </button>
+                        <a href="tel:0675456162" class="btn-contact"><i class="fa-solid fa-phone-flip"></i> اتصال بالهاتف</a>
+                        <a href="https://www.facebook.com/ouargla.english.oasis" target="_blank" class="btn-contact" style="background:#1877f2;"><i class="fa-brands fa-facebook"></i> فيسبوك</a>
                     </div>
                 </div>
-
-                <!-- بطاقة أستاذ 2 -->
-                <div class="teacher-card">
-                    <div>
-                        <div class="teacher-header">
-                            <div class="teacher-avatar" style="background: #e3f2fd; color: #1565c0;">أ.ف</div>
-                            <div class="teacher-info">
-                                <h4>فاطمة الزهراء</h4>
-                                <span>المتوسط + BEM</span>
-                            </div>
-                        </div>
-                        <div class="teacher-details">
-                            <div><i class="fa-solid fa-location-dot"></i> بلدية: الروايسات</div>
-                            <div><i class="fa-solid fa-building-user"></i> مكان الدعم: في منزل الأستاذ</div>
-                            <div><i class="fa-solid fa-graduation-cap"></i> مرافقة خاصة لشهادة التعليم المتوسط</div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="https://www.facebook.com/ouargla.english.oasis" target="_blank" class="btn-contact"><i class="fa-brands fa-facebook"></i> رابط الأستاذ</a>
-                        <button class="btn-rate-icon" onclick="rateTeacher('فاطمة الزهراء')" title="قيم تجربتك مع الأستاذ">
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                        </button>
-                    </div>
-                </div>
-
             </div>
         </div>
 
-        <!-- ================= صفحة الإعلانات والباقات المستقلة ================= -->
+        <!-- ================= ب. صفحة "من نحن" ================= -->
+        <div id="aboutPage" class="page-section">
+            <div class="content-card">
+                <h2>من نحن؟</h2>
+                <p>منصة **"الواحة للإنجليزية" (English Oasis)** هي منصة محلية رقمية مستقلة ومجانية، مخصصة حصرياً للغة الإنجليزية في ولاية ورقلة.</p>
+                <p style="margin-top: 1rem;">تهدف المنصة إلى تسهيل التواصل المباشر والشفاف بين الأولياء والطلبة وبين أساتذة اللغة الإنجليزية المعتمدين في مختلف بلديات الولاية، لتوفير بيئة تعليمية منظمة وواضحة بعيدة عن العشوائية.</p>
+            </div>
+        </div>
+
+        <!-- ================= ج. صفحة "تسجيل الأستاذ" ================= -->
+        <div id="registerPage" class="page-section">
+            <div class="content-card">
+                <h2>تسجيل الأستاذ</h2>
+                <p>هل أنت أستاذ لغة إنجليزية وتود الانضمام إلى دليل الواحة؟</p>
+                <p style="margin-top: 1rem;">يسعدنا انضمامك إلينا مجاناً. يمكنك إرسال معلوماتك (الاسم، المستويات التي تدعمها، البلدية، ورقم الهاتف) مباشرة عبر صفحتنا الرسمية على الفيسبوك أو عبر الواتساب الخاص بالمنصة.</p>
+            </div>
+        </div>
+
+        <!-- ================= د. صفحة "اتصل بنا" ================= -->
+        <div id="contactPage" class="page-section">
+            <div class="content-card">
+                <h2>اتصل بنا</h2>
+                <p>نحن تحت خدمتكم دائماً لأي استفسار أو اقتراح:</p>
+                <ul style="list-style: none; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li><i class="fa-brands fa-facebook" style="color:var(--primary-color);"></i> صفحة الفيسبوك: <a href="https://www.facebook.com/ouargla.english.oasis" target="_blank">ouargla.english.oasis</a></li>
+                    <li><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> واتساب الدعم: <strong>+213668603644</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================= هـ. صفحة "ركن الأستاذ" ================= -->
+        <div id="tribunePage" class="page-section">
+            <div class="content-card">
+                <h2>ركن الأستاذ</h2>
+                <p>مساحة خاصة بالأساتذة لمشاركة المقالات التربوية، نصائح المراجعة للامتحانات، والابتكارات البيداغوجية في تدريس اللغة الإنجليزية.</p>
+                <p style="margin-top: 1rem; color: #666;">(قريباً سيتم نشر أولى المقالات والومضات التعليمية من أساتذة ورقلة).</p>
+            </div>
+        </div>
+
+        <!-- ================= و. صفحة "الإعلانات والباقات" (عبر الفوتر فقط) ================= -->
         <div id="adsPage" class="page-section">
             <div class="ads-container">
-                <div class="ads-header">
-                    <h2>إعلانات الخدمات التعليمية والدورات</h2>
-                    <p>ساهم في إيصال رسالتكِ التعليمية، دوراتك التدريبية، أو خدماتك اللغوية (ترجمة، تدقيق لغوي) لآلاف الطلبة والأساتذة والأولياء عبر منصة "الواحة للإنجليزية" في ورقلة.</p>
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <h2 style="color:var(--primary-color);">إعلانات الخدمات التعليمية والدورات</h2>
+                    <p>ساهم في إيصال رسالتكِ التعليمية، دوراتك التدريبية، أو خدماتك اللغوية لآلاف الطلبة والأساتذة والأولياء في ورقلة.</p>
                 </div>
 
-                <!-- شبكة الباقات -->
                 <div class="pricing-grid">
-                    <!-- الباقة الأسبوعية -->
                     <div class="pricing-card">
                         <h3>الباقة الأسبوعية</h3>
                         <div class="price">500 دج <span>/ أسبوع</span></div>
-                        <ul class="pricing-features">
-                            <li><i class="fa-solid fa-check"></i> ظهور في شريط الإعلانات المتحرك</li>
-                            <li><i class="fa-solid fa-check"></i> مناسبة للورشات والإعلانات السريعة</li>
-                            <li><i class="fa-solid fa-check"></i> تفعيل فوري وسريع</li>
+                        <ul style="list-style: none; text-align: right; margin-bottom: 1.5rem; color: #555;">
+                            <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> ظهور في شريط الإعلانات المتحرك</li>
+                            <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> مناسبة للورشات والإعلانات السريعة</li>
                         </ul>
-                        <a href="https://wa.me/213668603644?text=مرحباً،%20أود%20حجز%20الباقة%20الإعلانية%20الأسبوعية%20(500%20دج)%20في%20منصة%20الواحة%20للإنجليزية." target="_blank" class="btn-whatsapp-book">
+                        <a href="https://wa.me/213668603644?text=مرحباً،%20أود%20حجز%20الباقة%20الإعلانية%20الأسبوعية%20(500%20دج)" target="_blank" class="btn-whatsapp-book">
                             <i class="fa-brands fa-whatsapp"></i> احجز عبر الواتساب
                         </a>
                     </div>
 
-                    <!-- الباقة الشهرية -->
                     <div class="pricing-card featured">
                         <h3>الباقة الشهرية</h3>
                         <div class="price">1500 دج <span>/ شهر</span></div>
-                        <ul class="pricing-features">
-                            <li><i class="fa-solid fa-check"></i> ظهور دائم طوال الشهر</li>
-                            <li><i class="fa-solid fa-check"></i> مثالية للمعاهد والدورات المستمرة</li>
-                            <li><i class="fa-solid fa-check"></i> أولوية العرض والتميز</li>
+                        <ul style="list-style: none; text-align: right; margin-bottom: 1.5rem; color: #555;">
+                            <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> ظهور دائم طوال الشهر</li>
+                            <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> مثالية للمعاهد والدورات المستمرة</li>
                         </ul>
-                        <a href="https://wa.me/213668603644?text=مرحباً،%20أود%20حجز%20الباقة%20الإعلانية%20الشهرية%20(1500%20دج)%20في%20منصة%20الواحة%20للإنجليزية." target="_blank" class="btn-whatsapp-book">
+                        <a href="https://wa.me/213668603644?text=مرحباً،%20أود%20حجز%20الباقة%20الإعلانية%20الشهرية%20(1500%20دج)" target="_blank" class="btn-whatsapp-book">
                             <i class="fa-brands fa-whatsapp"></i> احجز عبر الواتساب
                         </a>
                     </div>
                 </div>
 
-                <!-- معلومات الدفع المحلية -->
                 <div class="payment-info">
-                    <h4><i class="fa-solid fa-wallet"></i> طريقة الدفع وتأكيد الإعلان</h4>
-                    <p>1. قم بتحويل مبلغ الباقة عبر تطبيق <strong>BaridiMob</strong> أو صك بريدي (CCP) إلى الحساب البريدي التالي:</p>
+                    <h4 style="color:var(--primary-color); margin-bottom: 0.5rem;"><i class="fa-solid fa-wallet"></i> طريقة الدفع وتأكيد الإعلان</h4>
+                    <p>1. قم بتحويل المبلغ عبر تطبيق <strong>BaridiMob</strong> أو صك بريدي (CCP) إلى الحساب:</p>
                     <p>رقم الحساب (RIP): <span class="rip-code">00799999000130308745</span></p>
-                    <p>2. انقر على زر الواتساب أعلاه، وأرسل لنا <strong>نص الإعلان + صورة وصل الدفع (Reçu)</strong>، ليتم إطلاقه مباشرة!</p>
+                    <p style="margin-top: 0.5rem;">2. انقر على زر الواتساب أعلاه، وأرسل نص الإعلان + وصل الدفع للتفعيل الفوري.</p>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- 6. تذييل الصفحة (Footer) -->
+    <!-- 3. التذييل (Footer) يحتوي على رابط الإعلانات -->
     <footer>
         <div class="footer-container">
             <p style="font-size: 1.1rem; font-weight: 600;">الواحة للإنجليزية (English Oasis) - ورقلة</p>
-            <p style="font-size: 0.9rem; color: #d4a373;">منصة محلية لتوصيل الطلاب بأفضل أساتذة اللغة الإنجليزية.</p>
             <div class="footer-links">
+                <a onclick="switchPage('about')">من نحن</a>
                 <a onclick="switchPage('home')">دليل الأساتذة</a>
-                <a onclick="switchPage('ads')">الإعلانات والباقات</a>
+                <a onclick="switchPage('register')">تسجيل الأستاذ</a>
+                <a onclick="switchPage('contact')">اتصل بنا</a>
+                <a onclick="switchPage('tribune')">ركن الأستاذ</a>
+                <a onclick="switchPage('ads')" style="color: var(--accent-color); font-weight: bold;">الإعلانات والباقات</a>
                 <a href="https://www.facebook.com/ouargla.english.oasis" target="_blank">صفحة الفيسبوك</a>
             </div>
-            <hr style="width: 100%; border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 0.5rem 0;">
-            <p style="font-size: 0.8rem; color: #ccc;">جميع الحقوق محفوظة © 2026</p>
+            <p style="font-size: 0.8rem; color: #ccc; margin-top: 0.5rem;">جميع الحقوق محفوظة © 2026</p>
         </div>
     </footer>
 
-    <!-- الوظائف البرمجية (التنقل بين الصفحات وتقييم الأستاذ) -->
+    <!-- جافاسكريبت للتحكم بالصفحات -->
     <script>
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active-page');
             });
+            const targetPage = document.getElementById(pageId + 'Page') || document.getElementById('homePage');
             if (pageId === 'home') {
                 document.getElementById('homePage').classList.add('active-page');
-                window.scrollTo(0, 0);
+            } else if (pageId === 'about') {
+                document.getElementById('aboutPage').classList.add('active-page');
+            } else if (pageId === 'register') {
+                document.getElementById('registerPage').classList.add('active-page');
+            } else if (pageId === 'contact') {
+                document.getElementById('contactPage').classList.add('active-page');
+            } else if (pageId === 'tribune') {
+                document.getElementById('tribunePage').classList.add('active-page');
             } else if (pageId === 'ads') {
                 document.getElementById('adsPage').classList.add('active-page');
-                window.scrollTo(0, 0);
             }
-        }
-
-        function rateTeacher(teacherName) {
-            navigator.clipboard.writeText(teacherName).then(function() {
-                let confirmRedirect = confirm("تم نسخ اسم الأستاذ (" + teacherName + ") تلقائياً.\n\nهل تريد الانتقال الآن إلى صفحة الفيسبوك الرسمية للمنصة لكتابة تقييمك؟");
-                if (confirmRedirect) {
-                    window.open("https://www.facebook.com/ouargla.english.oasis", "_blank");
-                }
-            }).catch(function(err) {
-                alert("عذراً، تعذر نسخ الاسم تلقائياً. يمكنك كتابته يدوياً: " + teacherName);
-            });
+            window.scrollTo(0, 0);
         }
     </script>
 </body>
