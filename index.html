@@ -531,7 +531,7 @@
     <!-- الإعلان المتحرك (من اليسار إلى اليمين) -->
     <div class="marquee-container">
         <div class="marquee-content">
-            الأستاذة حسيبة دريس تعلن عن توفير حصص دعم لمستويي الابتدائي وتحضير BEM والثانوي، للتواصل والاستفسار: 0675456162 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🌟 مرحباً بكم في منصة الواحة للإنجليزية بولاية ورقلة 🌟
+            الأستاذة حسيبة دريس تعلن عن توفير حصص دعم لمختلف المستويات (الابتدائي، تحضير BEM، والثانوي)، للتواصل والاستفسار: 0675456162 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🌟 مرحباً بكم في منصة الواحة للإنجليزية بولاية ورقلة 🌟
         </div>
     </div>
 
@@ -603,7 +603,7 @@
 
             <h2 class="section-title">دليل أساتذة الدعم المعتمدين</h2>
             <div class="directory-grid">
-                <!-- بطاقة الأستاذة حسيبة دريس (بدون رابط وبالمواصفات المطلوبة) -->
+                <!-- بطاقة الأستاذة حسيبة دريس -->
                 <div class="teacher-card">
                     <div>
                         <div class="teacher-header">
@@ -623,7 +623,6 @@
                         <button class="btn-rate-icon" onclick="rateTeacher('حسيبة دريس')" title="قيم تجربتك مع الأستاذ">
                             <i class="fa-solid fa-star-half-stroke"></i> قيم تجربتك
                         </button>
-                        <!-- بدون رابط حسب الطلب -->
                     </div>
                 </div>
             </div>
@@ -633,12 +632,12 @@
         <div id="aboutPage" class="page-section">
             <div class="content-card">
                 <h2>من نحن؟</h2>
-                <p>منصة **"الواحة للإنجليزية" (English Oasis)** هي منصة محلية رقمية مستقلة ومجانية، مخصصة حصرياً لـ **أساتذة الدعم** للغة الإنجليزية في ولاية ورقلة.</p>
+                <p>منصة **"الواحة للإنجليزية" (English Oasis)** هي منصة محلية رقمية مخصصة حصرياً لـ **أساتذة الدعم** للغة الإنجليزية في ولاية ورقلة.</p>
                 <p style="margin-top: 1rem;">هذه المنصة هي **همزة وصل** شفافة ومباشرة بين الأولياء والطلبة وبين أساتذة الدعم المعتمدين في مختلف بلديات الولاية.</p>
             </div>
         </div>
 
-        <!-- ج. صفحة "تسجيل الأستاذ" (محدثة بالقوائم الكاملة ورابط الصفحة) -->
+        <!-- ج. صفحة "تسجيل الأستاذ" -->
         <div id="registerPage" class="page-section">
             <div class="content-card">
                 <h2>تسجيل أستاذ دعم جديد</h2>
@@ -709,7 +708,7 @@
                 <p>نحن تحت خدمتكم دائماً لأي استفسار أو اقتراح:</p>
                 <ul style="list-style: none; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem;">
                     <li><i class="fa-brands fa-facebook" style="color:var(--primary-color);"></i> صفحة الفيسبوك: <a href="https://www.facebook.com/ouargla.english.oasis" target="_blank">ouargla.english.oasis</a></li>
-                    <li><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> واتساب الصفحة: <strong>+213668603644</strong></li>
+                    <li><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> واتساب الصفحة: <strong style="direction: ltr; display: inline-block;">+213668603644</strong></li>
                 </ul>
             </div>
         </div>
@@ -820,7 +819,6 @@
             let selectedSupports = Array.from(document.querySelectorAll('input[name="regSupport"]:checked')).map(el => el.value).join(', ');
             let selectedLocations = Array.from(document.querySelectorAll('input[name="regLocation"]:checked')).map(el => el.value).join(' / ');
 
-            // إنشاء البطاقة الجديدة وإضافتها للدليل تلقائياً
             let initials = name.replace('الأستاذ', '').trim().split(' ').map(n => n[0]).join('.');
             if(!initials) initials = "أ.د";
 
