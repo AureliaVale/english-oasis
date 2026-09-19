@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الواحة للإنجليزية (English Oasis) - ورقلة</title>
-    <!-- خط Cairo -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- مكتبة الأيقونات FontAwesome -->
+    <title>منصة الواحة للإنجليزية | English Oasis</title>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary-color: #0d5c46;
-            --secondary-color: #f4f9f6;
-            --accent-color: #d4a373;
-            --text-color: #333333;
-            --border-color: #e0e0e0;
-            --white: #ffffff;
+            --primary-color: #0d5c75;
+            --secondary-color: #f4a261;
+            --accent-color: #e76f51;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #2b2b2b;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         * {
@@ -27,96 +29,66 @@
         }
 
         body {
-            background-color: var(--secondary-color);
+            background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
         }
 
-        /* --- الهيدر النظيف بالشعار واسم المنصة بالخط العريض --- */
+        /* Header & Navigation */
         header {
-            background: var(--white);
-            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(135deg, var(--primary-color), #093a4b);
+            color: white;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5srem;
+            font-weight: 900;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .site-logo {
-            height: 45px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .site-title-bold {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.8rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
+        nav button {
+            background: none;
+            border: none;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
             font-weight: 600;
-            transition: color 0.3s;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        .nav-links a:hover {
             color: var(--primary-color);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
 
-        /* --- الإعلان المتحرك (من اليسار إلى اليمين) --- */
-        .marquee-container {
-            background-color: #fff3cd;
-            color: #856404;
-            padding: 0.6rem 0;
-            font-weight: 600;
-            border-bottom: 1px solid #ffeeba;
-            overflow: hidden;
-            white-space: nowrap;
+        nav button:hover, nav button.active {
+            background-color: var(--primary-color);
+            color: white;
         }
 
-        .marquee-content {
-            display: inline-block;
-            animation: marqueeLeftToRight 25s linear infinite;
-        }
-
-        @keyframes marqueeLeftToRight {
-            0% { transform: translate(-100%, 0); }
-            100% { transform: translate(100%, 0); }
-        }
-
-        /* --- الحاويات الرئيسية --- */
-        .main-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        /* Container & Sections */
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 15px;
         }
 
         .page-section {
@@ -127,632 +99,481 @@
             display: block;
         }
 
-        .hero-section {
+        /* Tribune / Teacher's Corner */
+        .tribune-box {
+            background: linear-gradient(135deg, #2a9d8f, #264653);
+            color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin-bottom: 25px;
             text-align: center;
-            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: all 0.5s ease-in-out;
         }
 
-        .hero-section h1 {
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
+        .tribune-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
         }
 
-        .hero-section p {
-            color: #666;
-            font-size: 1.05rem;
+        .tribune-box p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
         }
 
-        /* --- الفلاتر والمربعات مع زر البحث --- */
-        .filter-section {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            margin-bottom: 2rem;
+        /* Filters & Search */
+        .filter-container {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 25px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            align-items: end;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
+            gap: 15px;
+            align-items: center;
         }
 
         .filter-group label {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .filter-group input[type="text"], .filter-group select {
-            padding: 0.7rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 0.95rem;
-            background: var(--white);
-        }
-
-        .checkbox-group-container {
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 0.6rem;
-            max-height: 130px;
-            overflow-y: auto;
-            background: #fafafa;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-
-        .checkbox-item input {
-            accent-color: var(--primary-color);
-            width: 16px;
-            height: 16px;
-        }
-
-        .btn-search-action {
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 0.7rem 1.2rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-            height: 45px;
-        }
-
-        .btn-search-action:hover {
-            background-color: #bc8a5f;
-        }
-
-        /* --- منبر الأستاذ (متحرك ومتنوع بين الإنجليزية والعربية) --- */
-        .teacher-tribune {
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-            border-right: 5px solid var(--primary-color);
-            padding: 1.2rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2.5rem;
-            min-height: 95px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .teacher-tribune h3 {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .tribune-text {
-            font-size: 1rem;
-            color: #333;
+            display: block;
             font-weight: 600;
-            transition: opacity 0.5s ease-in-out;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
         }
 
-        /* --- بطاقات الأساتذة --- */
-        .section-title {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.4rem;
-            display: inline-block;
+        .filter-group input, .filter-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
         }
 
+        .btn-filter {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            height: 42px;
+            align-self: flex-end;
+        }
+
+        .btn-filter:hover {
+            background-color: #093a4b;
+        }
+
+        /* Directory Grid */
         .directory-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
         }
 
         .teacher-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border-top: 5px solid var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-5px);
         }
 
         .teacher-header {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
         .teacher-avatar {
             width: 55px;
             height: 55px;
-            background: var(--secondary-color);
+            background-color: #e0f2fe;
             color: var(--primary-color);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.2rem;
+            font-weight: bold;
+            flex-shrink: 0;
         }
 
         .teacher-info h4 {
             font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 3px;
         }
 
         .teacher-info span {
             font-size: 0.85rem;
-            color: var(--primary-color);
-            background: var(--secondary-color);
-            padding: 0.2rem 0.6rem;
+            color: #666;
+            background: #eee;
+            padding: 2px 8px;
             border-radius: 4px;
             display: inline-block;
-            margin-top: 0.2rem;
         }
 
         .teacher-details {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 15px;
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
+            gap: 6px;
         }
 
         .teacher-details i {
-            color: var(--primary-color);
-            margin-left: 0.4rem;
+            color: var(--secondary-color);
+            margin-left: 8px;
             width: 16px;
         }
 
         .card-footer {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-            margin-top: auto;
-            gap: 0.5rem;
+            gap: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 12px;
         }
 
-        .btn-rate-icon {
-            background: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            padding: 0.4rem 0.8rem;
+        .btn-contact, .btn-rate-icon {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
             border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            transition: transform 0.2s;
-        }
-
-        .btn-rate-icon:hover {
-            transform: scale(1.05);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .btn-contact {
             background-color: var(--primary-color);
-            color: var(--white);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-align: center;
+            color: white;
+            border: none;
         }
 
-        /* --- النماذج وصفحة التسجيل المباشر --- */
-        .content-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-            max-width: 800px;
+        .btn-contact:hover {
+            background-color: #093a4b;
+        }
+
+        .btn-rate-icon {
+            background-color: #fff3e0;
+            color: #d97706;
+            border: 1px solid #fcd34d;
+        }
+
+        .btn-rate-icon:hover {
+            background-color: #fef3c7;
+        }
+
+        /* Registration Form Styles */
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 700px;
             margin: 0 auto;
         }
 
-        .content-card h2 {
+        .form-container h2 {
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .form-group {
-            margin-bottom: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
+            margin-bottom: 20px;
         }
 
         .form-group label {
+            display: block;
             font-weight: 600;
-            color: var(--primary-color);
+            margin-bottom: 8px;
         }
 
-        .form-group input, .form-group select, .form-group textarea {
-            padding: 0.7rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 0.95rem;
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            background: #fdfdfd;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            cursor: pointer;
         }
 
         .btn-submit {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary-color);
+            color: white;
             border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
             width: 100%;
-            margin-top: 1rem;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
 
         .btn-submit:hover {
-            background-color: #083b2d;
+            background-color: #e09350;
         }
 
-        /* --- صفحة الإعلانات المستقلة --- */
+        /* Ads Page Styles */
         .ads-container {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-            max-width: 900px;
+            background: white;
+            padding: 35px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 800px;
             margin: 0 auto;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .pricing-card {
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            background: var(--secondary-color);
-        }
-
-        .pricing-card.featured {
-            border-color: var(--primary-color);
-            background: var(--white);
-        }
-
-        .price {
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 1rem 0;
-        }
-
-        .btn-whatsapp-book {
-            display: inline-block;
-            background-color: #25d366;
-            color: #fff;
-            padding: 0.7rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            width: 100%;
             text-align: center;
         }
 
-        /* --- التذييل --- */
+        .ads-container h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .ads-container p {
+            color: #555;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
         footer {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 2rem 1rem;
-            margin-top: 3rem;
             text-align: center;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-            font-size: 0.95rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
+            padding: 20px;
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
 
-    <!-- الهيدر بالشعار واسم المنصة العريض -->
     <header>
-        <div class="nav-container">
-            <a class="logo-area" onclick="switchPage('home')">
-                <img src="logo.png" alt="الواحة للإنجليزية" class="site-logo">
-                <span class="site-title-bold">الواحة للإنجليزية (English Oasis)</span>
-            </a>
-            <ul class="nav-links">
-                <li><a onclick="switchPage('about')">من نحن</a></li>
-                <li><a onclick="switchPage('home')">دليل الأساتذة</a></li>
-                <li><a onclick="switchPage('register')">تسجيل الأستاذ</a></li>
-                <li><a onclick="switchPage('contact')">اتصل بنا</a></li>
-            </ul>
-        </div>
+        <h1>منصة الواحة للإنجليزية</h1>
+        <p>دليل أساتذة الدعم لجميع المستويات في ولاية ورقلة</p>
     </header>
 
-    <!-- الإعلان المتحرك (من اليسار إلى اليمين) -->
-    <div class="marquee-container">
-        <div class="marquee-content">
-            الأستاذة حسيبة دريس تعلن عن توفير حصص دعم لمختلف المستويات (الابتدائي، تحضير BEM، والثانوي)، للتواصل والاستفسار: 0675456162 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🌟 مرحباً بكم في منصة الواحة للإنجليزية بولاية ورقلة 🌟
-        </div>
-    </div>
+    <nav>
+        <button onclick="switchPage('home')" class="active"><i class="fa-solid fa-house"></i> الدليل العام</button>
+        <button onclick="switchPage('register')"><i class="fa-solid fa-user-plus"></i> تسجيل أستاذ</button>
+        <button onclick="switchPage('ads')"><i class="fa-solid fa-bullhorn"></i> فضاء الإعلانات</button>
+    </nav>
 
-    <div class="main-container">
+    <div class="container">
 
-        <!-- أ. صفحة دليل الأساتذة والبحث -->
+        <!-- 1. الصفحة الرئيسية (الدليل العام ومنبر الأستاذ) -->
         <div id="homePage" class="page-section active-page">
-            <div class="hero-section">
-                <h1>دليل أساتذة الدعم للغة الإنجليزية في ورقلة</h1>
-                <p>منصة محلية مخصصة حصرياً لأساتذة الدعم للغة الإنجليزية.</p>
+            
+            <!-- منبر الأستاذ المتحرك -->
+            <div class="tribune-box" id="tribuneBox">
+                <h3 id="tribuneTitle">Teacher's Corner</h3>
+                <p id="tribuneText" style="direction: ltr; text-align: left;">"To have another language is to possess a second soul."</p>
             </div>
 
-            <div class="filter-section">
+            <!-- شريط البحث والتصفية -->
+            <div class="filter-container">
                 <div class="filter-group">
-                    <label for="searchName">البحث باسم الأستاذ</label>
-                    <input type="text" id="searchName" placeholder="اكتب اسم الأستاذ...">
+                    <label for="searchName">بحث باسم الأستاذ:</label>
+                    <input type="text" id="searchName" placeholder="أدخل اسم الأستاذ...">
                 </div>
-
                 <div class="filter-group">
-                    <label>المرحلة / نوع الدعم</label>
-                    <div class="checkbox-group-container">
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="primary"> الروضة والابتدائي</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="middle"> المتوسط</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="bem"> تحضير BEM</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="secondary"> الثانوي</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="bac"> تحضير BAC</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="esp"> ESP (الإنجليزية لغايات خاصّة)</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="ielts"> تحضير IELTS/TOEFL</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="general"> الإنجليزية العامة</label>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <label>مكان الدعم</label>
-                    <div class="checkbox-group-container">
-                        <label class="checkbox-item"><input type="checkbox" name="location" value="center"> في مركز</label>
-                        <label class="checkbox-item"><input type="checkbox" name="location" value="teacher-home"> في منزل الأستاذ</label>
-                        <label class="checkbox-item"><input type="checkbox" name="location" value="student-home"> في منزل التلميذ</label>
-                        <label class="checkbox-item"><input type="checkbox" name="location" value="online"> أونلاين (Online)</label>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <label for="filterMunicipality">البلدية</label>
+                    <label for="filterMunicipality">البلدية:</label>
                     <select id="filterMunicipality">
                         <option value="">كل البلديات</option>
-                        <option value="ouargla">ورقلة</option>
-                        <option value="rouissat">الرويسات</option>
-                        <option value="angoussa">أنقوسة</option>
-                        <option value="sidi-khouiled">سيدي خويلد</option>
-                        <option value="hassi-messaoud">حاسي مسعود</option>
-                        <option value="ain-beida">عين البيضاء</option>
-                        <option value="el-borma">البرمة</option>
+                        <option value="ورقلة">ورقلة</option>
+                        <option value="رويسات">الرويسات</option>
+                        <option value="حاسي مسعود">حاسي مسعود</option>
+                        <option value="تڤرت">تڤرت</option>
+                        <option value="الطيبة">الطيبة</option>
                     </select>
                 </div>
-
-                <div class="filter-group">
-                    <button class="btn-search-action" onclick="applyFilters()">
-                        <i class="fa-solid fa-search"></i> بحث
-                    </button>
-                </div>
+                <button class="btn-filter" onclick="applyFilters()"><i class="fa-solid fa-filter"></i> تصفية النتائج</button>
             </div>
 
-            <!-- منبر الأستاذ (متحرك تلقائياً ومنوع بين الإنجليزية والعربية) -->
-            <div class="teacher-tribune">
-                <h3><i class="fa-solid fa-lightbulb"></i> <span id="tribuneTitle">Teacher's Corner</span></h3>
-                <p id="tribuneText" class="tribune-text">"To have another language is to possess a second soul."</p>
-            </div>
-
-            <h2 class="section-title">دليل أساتذة الدعم المعتمدين</h2>
+            <!-- شبكة عرض الأساتذة (تجلب البيانات تلقائياً من جوجل شيت) -->
             <div class="directory-grid">
-                <!-- بطاقة الأستاذة حسيبة دريس -->
-                <div class="teacher-card">
-                    <div>
-                        <div class="teacher-header">
-                            <div class="teacher-info" style="text-align: right;">
-                                <h4>حسيبة دريس</h4>
-                                <span>الابتدائي + تحضير BEM + الثانوي</span>
-                            </div>
-                            <div class="teacher-avatar">ح.د</div>
-                        </div>
-                        <div class="teacher-details">
-                            <div><i class="fa-solid fa-location-dot"></i> البلدية: ورقلة</div>
-                            <div><i class="fa-solid fa-building-user"></i> مكان الدعم: في مركز / منزل التلميذ</div>
-                            <div><i class="fa-solid fa-phone"></i> الهاتف: 0675456162</div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn-rate-icon" onclick="rateTeacher('حسيبة دريس')" title="قيم تجربتك مع الأستاذ">
-                            <i class="fa-solid fa-star-half-stroke"></i> قيم تجربتك
-                        </button>
-                    </div>
-                </div>
+                <!-- ستتم تعبئة البطاقات تلقائياً هنا عبر الجافاسكريبت -->
             </div>
+
         </div>
 
-        <!-- ب. صفحة "من نحن" -->
-        <div id="aboutPage" class="page-section">
-            <div class="content-card">
-                <h2>من نحن؟</h2>
-                <p>منصة **"الواحة للإنجليزية" (English Oasis)** هي منصة محلية رقمية مخصصة حصرياً لـ **أساتذة الدعم** للغة الإنجليزية في ولاية ورقلة.</p>
-                <p style="margin-top: 1rem;">هذه المنصة هي **همزة وصل** شفافة ومباشرة بين الأولياء والطلبة وبين أساتذة الدعم المعتمدين في مختلف بلديات الولاية.</p>
-            </div>
-        </div>
-
-        <!-- ج. صفحة "تسجيل الأستاذ" -->
+        <!-- 2. صفحة تسجيـل الأستاذ -->
         <div id="registerPage" class="page-section">
-            <div class="content-card">
-                <h2>تسجيل أستاذ دعم جديد</h2>
-                <p style="margin-bottom: 1.5rem; color: #555;">املأ النموذج أدناه لتسجيل بياناتك وتحديد خياراتك لتظهر مباشرة في الدليل:</p>
-                
-                <form onsubmit="handleRegistration(event)">
+            <div class="form-container">
+                <h2>استمارة انضمام أستاذ دعم</h2>
+                <form id="teacherRegistrationForm" onsubmit="handleRegistration(event)">
+                    
                     <div class="form-group">
-                        <label>الاسم الكامل للأستاذ:</label>
-                        <input type="text" id="regName" required placeholder="مثال: الأستاذ محمد بن علي">
+                        <label for="regName">الاسم الكامل والأقباب (مثال: أ. حسيبة دريس):</label>
+                        <input type="text" id="regName" required placeholder="أدخل اسمك الكامل">
                     </div>
 
                     <div class="form-group">
-                        <label>المستويات / نوع الدعم المقدم:</label>
-                        <div class="checkbox-group-container" style="max-height: 160px;">
-                            <label class="checkbox-item"><input type="checkbox" name="regSupport" value="الروضة والابتدائي"> الروضة والابتدائي</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regSupport" value="المتوسط"> المتوسط</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regSupport" value="تحضير BEM"> تحضير BEM</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regSupport" value="الثانوي"> الثانوي</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regSupport" value="تحضير BAC"> تحضير BAC</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regSupport" value="ESP"> ESP (الإنجليزية لغايات خاصّة)</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regSupport" value="تحضير IELTS/TOEFL"> تحضير IELTS/TOEFL</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regSupport" value="الإنجليزية العامة"> الإنجليزية العامة</label>
+                        <label>المستويات التعليمية وأنوع الدعم المقدمة:</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" name="regSupport" value="ابتدائي"> ابتدائي</label>
+                            <label class="checkbox-label"><input type="checkbox" name="regSupport" value="متوسط"> متوسط</label>
+                            <label class="checkbox-label"><input type="checkbox" name="regSupport" value="ثانوي"> ثانوي</label>
+                            <label class="checkbox-label"><input type="checkbox" name="regSupport" value="محادثة و محتوى"> محادثة</label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>مكان التدريس / الدعم:</label>
-                        <div class="checkbox-group-container" style="max-height: 130px;">
-                            <label class="checkbox-item"><input type="checkbox" name="regLocation" value="في مركز"> في مركز</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regLocation" value="في منزل الأستاذ"> في منزل الأستاذ</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regLocation" value="في منزل التلميذ"> في منزل التلميذ</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regLocation" value="أونلاين (Online)"> أونلاين (Online)</label>
+                        <label>أماكن التدريس / الدعم:</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" name="regLocation" value="قاعة تدريس خاصة"> قاعة خاصة</label>
+                            <label class="checkbox-label"><input type="checkbox" name="regLocation" value="دروس منزلية"> دروس منزلية</label>
+                            <label class="checkbox-label"><input type="checkbox" name="regLocation" value="عن بعد (أونلاين)"> عن بعد (أونلاين)</label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>البلدية:</label>
-                        <select id="regMunicipality">
+                        <label for="regMunicipality">البلدية:</label>
+                        <select id="regMunicipality" required>
+                            <option value="">اختر البلدية...</option>
                             <option value="ورقلة">ورقلة</option>
-                            <option value="الرويسات">الرويسات</option>
-                            <option value="أنقوسة">أنقوسة</option>
-                            <option value="سيدي خويلد">سيدي خويلد</option>
+                            <option value="رويسات">الرويسات</option>
                             <option value="حاسي مسعود">حاسي مسعود</option>
-                            <option value="عين البيضاء">عين البيضاء</option>
-                            <option value="البرمة">البرمة</option>
+                            <option value="تڤرت">تڤرت</option>
+                            <option value="الطيبة">الطيبة</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>رقم الهاتف للتواصل:</label>
-                        <input type="text" id="regPhone" required placeholder="06xxxxxxxx">
+                        <label for="regPhone">رقم الهاتف للتواصل:</label>
+                        <input type="tel" id="regPhone" required placeholder="06xxxxxxxx أو 07xxxxxxxx">
                     </div>
 
                     <div class="form-group">
-                        <label>رابط صفحتك أو حسابك (اختياري - للظهور في أسفل البطاقة):</label>
-                        <input type="url" id="regLink" placeholder="https://www.facebook.com/your-page أو رابط منصتك">
+                        <label for="regLink">رابط صفحة الفيسبوك أو الموقع (اختياري):</label>
+                        <input type="text" id="regLink" placeholder="https://www.facebook.com/...">
                     </div>
 
-                    <button type="submit" class="btn-submit">إرسال التسجيل مباشرة</button>
+                    <button type="submit" class="btn-submit">إرسال التسجيل والانضمام للدليل</button>
                 </form>
             </div>
         </div>
 
-        <!-- د. صفحة "اتصل بنا" -->
-        <div id="contactPage" class="page-section">
-            <div class="content-card">
-                <h2>اتصل بنا</h2>
-                <p>نحن تحت خدمتكم دائماً لأي استفسار أو اقتراح:</p>
-                <ul style="list-style: none; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                    <li><i class="fa-brands fa-facebook" style="color:var(--primary-color);"></i> صفحة الفيسبوك: <a href="https://www.facebook.com/ouargla.english.oasis" target="_blank">ouargla.english.oasis</a></li>
-                    <li><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> واتساب الصفحة: <strong style="direction: ltr; display: inline-block;">+213668603644</strong></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- و. صفحة "الإعلانات والباقات" -->
+        <!-- 3. صفحة فضاء الإعلانات -->
         <div id="adsPage" class="page-section">
             <div class="ads-container">
-                <div style="text-align: center; margin-bottom: 2rem;">
-                    <h2 style="color:var(--primary-color);">إعلانات الخدمات التعليمية والدورات</h2>
-                    <p>ساهم في إيصال رسالتكِ التعليمية، دوراتك التدريبية، أو خدماتك اللغوية لآلاف الطلبة والأساتذة والأولياء في ورقلة.</p>
-                </div>
-
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h3>الباقة الأسبوعية</h3>
-                        <div class="price">500 دج <span>/ أسبوع</span></div>
-                        <ul style="list-style: none; text-align: right; margin-bottom: 1.5rem; color: #555;">
-                            <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> ظهور في شريط الإعلانات المتحرك</li>
-                            <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> مناسبة للورشات والإعلانات السريعة</li>
-                        </ul>
-                        <a href="https://wa.me/213668603644?text=مرحباً،%20أود%20حجز%20الباقة%20الإعلانية%20الأسبوعية%20(500%20دج)" target="_blank" class="btn-whatsapp-book">
-                            <i class="fa-brands fa-whatsapp"></i> احجز عبر الواتساب
-                        </a>
-                    </div>
-
-                    <div class="pricing-card featured">
-                        <h3>الباقة الشهرية</h3>
-                        <div class="price">1500 دج <span>/ شهر</span></div>
-                        <ul style="list-style: none; text-align: right; margin-bottom: 1.5rem; color: #555;">
-                            <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> ظهور دائم طوال الشهر</li>
-                            <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> مثالية للمعاهد والدورات المستمرة</li>
-                        </ul>
-                        <a href="https://wa.me/213668603644?text=مرحباً،%20أود%20حجز%20الباقة%20الإعلانية%20الشهرية%20(1500%20دج)" target="_blank" class="btn-whatsapp-book">
-                            <i class="fa-brands fa-whatsapp"></i> احجز عبر الواتساب
-                        </a>
-                    </div>
-                </div>
+                <h2>فضاء الإعلانات والعروض الخاصة</h2>
+                <p>مرحباً بكم في مساحة الإعلانات المخصصة لأساتذة وأولياء الأمور في ولاية ورقلة.</p>
+                <p>تابعوا أحدث التحديثات، البرامج التعليمية، والفعاليات الثقافية الخاصة باللغة الإنجليزية عبر صفحتنا الرسمية على الفيسبوك.</p>
+                <a href="https://www.facebook.com/ouargla.english.oasis" target="_blank" class="btn-contact" style="display: inline-block; width: auto; padding: 12px 25px;">زيارة صفحة الفيسبوك</a>
             </div>
         </div>
 
     </div>
 
-    <!-- التذييل -->
     <footer>
-        <div class="footer-container">
-            <p style="font-size: 1.1rem; font-weight: 600;">الواحة للإنجليزية (English Oasis) - ورقلة</p>
-            <div class="footer-links">
-                <a onclick="switchPage('about')">من نحن</a>
-                <a onclick="switchPage('home')">دليل الأساتذة</a>
-                <a onclick="switchPage('register')">تسجيل الأستاذ</a>
-                <a onclick="switchPage('contact')">اتصل بنا</a>
-                <a onclick="switchPage('ads')" style="color: var(--accent-color); font-weight: bold;">الإعلانات والباقات</a>
-                <a href="https://www.facebook.com/ouargla.english.oasis" target="_blank">صفحة الفيسبوك</a>
-            </div>
-            <p style="font-size: 0.8rem; color: #ccc; margin-top: 0.5rem;">جميع الحقوق محفوظة © 2026</p>
-        </div>
+        <p>جميع الحقوق محفوظة &copy; 2026 - منصة الواحة للإنجليزية (English Oasis) | ورقلة، الجزائر</p>
     </footer>
 
-    <!-- الوظائف البرمجية -->
+    <!-- الوظائف البرمجية وجلب الأساتذة تلقائياً من Google Sheets -->
     <script>
+        // رابط الـ Web App الخاص بك لجلب البيانات تلقائياً
+        const scriptURL_GET = 'https://script.google.com/macros/s/AKfycbxhFNB4Op8WcdNIHmcJ0jtVj6t9V_cZvkD3_vXDotMeMZTiB95oErnwrTxWpwU1YuOo0g/exec';
+
+        // دالة جلب الأساتذة تلقائياً عند تحميل الصفحة
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchTeachers();
+        });
+
+        function fetchTeachers() {
+            let grid = document.querySelector('.directory-grid');
+            if(!grid) return;
+
+            grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--primary-color); font-weight: 600;">جاري تحميل قائمة الأساتذة...</p>';
+
+            fetch(scriptURL_GET)
+                .then(response => response.json())
+                .then(data => {
+                    grid.innerHTML = '';
+
+                    if (!data || data.length === 0) {
+                        grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #666;">لا يوجد أساتذة مسجلين حالياً. كن أول المنضمين!</p>';
+                        return;
+                    }
+
+                    // عكس الترتيب لظهور أحدث التسجيلات في الأعلى
+                    data.reverse().forEach(teacher => {
+                        let initials = teacher.name.replace('الأستاذ', '').replace('استاذة', '').trim().split(' ').map(n => n[0]).join('.');
+                        if(!initials) initials = "أ.د";
+
+                        let card = document.createElement('div');
+                        card.className = 'teacher-card';
+                        card.innerHTML = `
+                            <div>
+                                <div class="teacher-header">
+                                    <div class="teacher-info" style="text-align: right;">
+                                        <h4>${teacher.name}</h4>
+                                        <span>${teacher.support || 'دعم عام'}</span>
+                                    </div>
+                                    <div class="teacher-avatar">${initials}</div>
+                                </div>
+                                <div class="teacher-details">
+                                    <div><i class="fa-solid fa-location-dot"></i> البلدية: ${teacher.municipality || 'غير محدد'}</div>
+                                    <div><i class="fa-solid fa-building-user"></i> مكان الدعم: ${teacher.location || 'غير محدد'}</div>
+                                    <div><i class="fa-solid fa-phone"></i> الهاتف: ${teacher.phone || 'غير مسجل'}</div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn-rate-icon" onclick="rateTeacher('${teacher.name}')" title="قيم تجربتك مع الأستاذ">
+                                    <i class="fa-solid fa-star-half-stroke"></i> قيم تجربتك
+                                </button>
+                                ${teacher.link ? `<a href="${teacher.link}" target="_blank" class="btn-contact"><i class="fa-solid fa-user"></i> رابط صفحة الأستاذ</a>` : ''}
+                            </div>
+                        `;
+                        grid.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching teachers:', error);
+                    grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: red;">عفواً، حدث خطأ أثناء تحميل بيانات الأساتذة.</p>';
+                });
+        }
+
         // مأثورات ومقولات متنوعة (بالإنجليزية والعربية) لمنبر الأستاذ
         const tribuneItems = [
             {
@@ -795,7 +616,6 @@
             
             if(!titleEl || !textEl) return;
 
-            // تأثير تراجع خفيف عند التبديل
             textEl.style.opacity = 0;
             
             setTimeout(() => {
@@ -811,9 +631,7 @@
             }, 300);
         }
 
-        // تغيير العبارة تلقائياً كل 8 ثوانٍ
         setInterval(rotateTribune, 8000);
-
 
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(section => {
@@ -828,7 +646,6 @@
             window.scrollTo(0, 0);
         }
 
-        // دالة التقييم اللطيفة والمباشرة
         function rateTeacher(teacherName) {
             let userConfirmation = confirm(
                 "🌟 تقييم الأستاذ: " + teacherName + "\n\n" +
@@ -844,9 +661,6 @@
         function applyFilters() {
             let searchName = document.getElementById('searchName').value.trim();
             let municipality = document.getElementById('filterMunicipality').value;
-            let selectedSupports = Array.from(document.querySelectorAll('input[name="support"]:checked')).map(el => el.value);
-            let selectedLocations = Array.from(document.querySelectorAll('input[name="location"]:checked')).map(el => el.value);
-
             alert("جاري تصفية النتائج بناءً على اختياراتك...");
         }
 
@@ -872,9 +686,9 @@
                 link: link
             };
 
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwcS8e94c3s2FYkkpLz8vCoJOftpAQG0ioIYV0fACtTPxXu33H6THDs2ZVmHYlgfneImw/exec';
+            const scriptURL_POST = 'https://script.google.com/macros/s/AKfycbxhFNB4Op8WcdNIHmcJ0jtVj6t9V_cZvkD3_vXDotMeMZTiB95oErnwrTxWpwU1YuOo0g/exec';
 
-            fetch(scriptURL, {
+            fetch(scriptURL_POST, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: {
@@ -883,40 +697,10 @@
                 body: JSON.stringify(formData)
             })
             .then(response => {
-                let initials = name.replace('الأستاذ', '').trim().split(' ').map(n => n[0]).join('.');
-                if(!initials) initials = "أ.د";
-
-                let grid = document.querySelector('.directory-grid');
-                let newCard = document.createElement('div');
-                newCard.className = 'teacher-card';
-                newCard.innerHTML = `
-                    <div>
-                        <div class="teacher-header">
-                            <div class="teacher-info" style="text-align: right;">
-                                <h4>${name}</h4>
-                                <span>${selectedSupports || 'دعم عام'}</span>
-                            </div>
-                            <div class="teacher-avatar">${initials}</div>
-                        </div>
-                        <div class="teacher-details">
-                            <div><i class="fa-solid fa-location-dot"></i> البلدية: ${municipality}</div>
-                            <div><i class="fa-solid fa-building-user"></i> مكان الدعم: ${selectedLocations || 'غير محدد'}</div>
-                            <div><i class="fa-solid fa-phone"></i> الهاتف: ${phone}</div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn-rate-icon" onclick="rateTeacher('${name}')" title="قيم تجربتك مع الأستاذ">
-                            <i class="fa-solid fa-star-half-stroke"></i> قيم تجربتك
-                        </button>
-                        ${link ? `<a href="${link}" target="_blank" class="btn-contact"><i class="fa-solid fa-user"></i> رابط صفحة الأستاذ</a>` : ''}
-                    </div>
-                `;
-
-                grid.prepend(newCard);
-
                 alert("شكراً لك أستاذ(ة) " + name + "!\nتم تسجيل بياناتك وإرسالها إلى جدول البيانات بنجاح.");
                 event.target.reset();
                 switchPage('home');
+                setTimeout(fetchTeachers, 1500);
             })
             .catch(error => {
                 console.error('Error!', error.message);
