@@ -540,7 +540,7 @@
         <div id="homePage" class="page-section active-page">
             <div class="hero-section">
                 <h1>دليل أساتذة الدعم للغة الإنجليزية في ورقلة</h1>
-                <p>منصة محلية مخصصة حصرياً لأساتذة الدعم للغة الإنجليزية.</p>
+                <p>منصة محلية مخصصة حصرياً لأساتذة الدعم للغة الإإنجليزية.</p>
             </div>
 
             <div class="filter-section">
@@ -789,14 +789,17 @@
         }
 
         function rateTeacher(teacherName) {
-            navigator.clipboard.writeText(teacherName).then(function() {
-                let confirmRedirect = confirm("تم نسخ اسم الأستاذ (" + teacherName + ") تلقائياً.\n\nهل تريد الانتقال الآن إلى صفحة الفيسبوك الرسمية للمنصة لكتابة تقييمك؟");
-                if (confirmRedirect) {
-                    window.open("https://www.facebook.com/ouargla.english.oasis", "_blank");
-                }
-            }).catch(function(err) {
-                alert("عذراً، تعذر نسخ الاسم تلقائياً. يمكنك كتابته يدوياً: " + teacherName);
-            });
+            let tempInput = document.createElement("textarea");
+            tempInput.value = teacherName;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            let confirmRedirect = confirm("تم نسخ اسم الأستاذ (" + teacherName + ") تلقائياً.\n\nهل تريد الانتقال الآن إلى صفحة الفيسبوك الرسمية للمنصة لكتابة تقييمك؟");
+            if (confirmRedirect) {
+                window.open("https://www.facebook.com/ouargla.english.oasis", "_blank");
+            }
         }
 
         function applyFilters() {
