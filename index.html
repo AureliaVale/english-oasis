@@ -454,6 +454,24 @@
             text-align: center;
         }
 
+        .payment-info {
+            background: #f9f9f9;
+            border: 1px dashed var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .rip-code {
+            font-family: monospace;
+            background: #fff;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
         /* --- التذييل --- */
         footer {
             background-color: var(--primary-color);
@@ -727,6 +745,13 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="payment-info">
+                    <h4 style="color:var(--primary-color); margin-bottom: 0.5rem;"><i class="fa-solid fa-wallet"></i> طريقة الدفع وتأكيد الإعلان</h4>
+                    <p>1. قم بتحويل المبلغ عبر تطبيق <strong>BaridiMob</strong> أو صك بريدي (CCP) إلى الحساب:</p>
+                    <p>رقم الحساب (RIP): <span class="rip-code">00799999000130308745</span></p>
+                    <p style="margin-top: 0.5rem;">2. انقر على زر الواتساب أعلاه، وأرسل نص الإعلان + وصل الدفع للتفعيل الفوري.</p>
+                </div>
             </div>
         </div>
 
@@ -748,7 +773,7 @@
         </div>
     </footer>
 
-    <!-- الوظائف البرمجية -->
+    <!-- الوظائف البرمجية المحدثة مع رابط جدول البيانات -->
     <script>
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(section => {
@@ -785,6 +810,9 @@
 
         function handleRegistration(event) {
             event.preventDefault();
+            
+            // جمع البيانات بالترتيب الصحيح (التاريخ، الاسم، الدعم، المكان، البلدية، الهاتف، الرابط)
+            let currentDate = new Date().toLocaleDateString('ar-DZ');
             let name = document.getElementById('regName').value;
             let municipality = document.getElementById('regMunicipality').value;
             let phone = document.getElementById('regPhone').value;
@@ -793,41 +821,67 @@
             let selectedSupports = Array.from(document.querySelectorAll('input[name="regSupport"]:checked')).map(el => el.value).join(', ');
             let selectedLocations = Array.from(document.querySelectorAll('input[name="regLocation"]:checked')).map(el => el.value).join(' / ');
 
-            let initials = name.replace('الأستاذ', '').trim().split(' ').map(n => n[0]).join('.');
-            if(!initials) initials = "أ.د";
+            let formData = {
+                date: currentDate,
+                name: name,
+                support: selectedSupports || 'دعم عام',
+                location: selectedLocations || 'غير محدد',
+                municipality: municipality,
+                phone: phone,
+                link: link
+            };
 
-            let grid = document.querySelector('.directory-grid');
-            
-            let newCard = document.createElement('div');
-            newCard.className = 'teacher-card';
-            newCard.innerHTML = `
-                <div>
-                    <div class="teacher-header">
-                        <div class="teacher-info" style="text-align: right;">
-                            <h4>${name}</h4>
-                            <span>${selectedSupports || 'دعم عام'}</span>
+            // رابط الـ Web App الخاص بك مدمج وجاهز تماماً
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwcS8e94c3s2FYkkpLz8vCoJOftpAQG0ioIYV0fACtTPxXu33H6THDs2ZVmHYlgfneImw/exec';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                let initials = name.replace('الأستاذ', '').trim().split(' ').map(n => n[0]).join('.');
+                if(!initials) initials = "أ.د";
+
+                let grid = document.querySelector('.directory-grid');
+                let newCard = document.createElement('div');
+                newCard.className = 'teacher-card';
+                newCard.innerHTML = `
+                    <div>
+                        <div class="teacher-header">
+                            <div class="teacher-info" style="text-align: right;">
+                                <h4>${name}</h4>
+                                <span>${selectedSupports || 'دعم عام'}</span>
+                            </div>
+                            <div class="teacher-avatar">${initials}</div>
                         </div>
-                        <div class="teacher-avatar">${initials}</div>
+                        <div class="teacher-details">
+                            <div><i class="fa-solid fa-location-dot"></i> البلدية: ${municipality}</div>
+                            <div><i class="fa-solid fa-building-user"></i> مكان الدعم: ${selectedLocations || 'غير محدد'}</div>
+                            <div><i class="fa-solid fa-phone"></i> الهاتف: ${phone}</div>
+                        </div>
                     </div>
-                    <div class="teacher-details">
-                        <div><i class="fa-solid fa-location-dot"></i> البلدية: ${municipality}</div>
-                        <div><i class="fa-solid fa-building-user"></i> مكان الدعم: ${selectedLocations || 'غير محدد'}</div>
-                        <div><i class="fa-solid fa-phone"></i> الهاتف: ${phone}</div>
+                    <div class="card-footer">
+                        <button class="btn-rate-icon" onclick="rateTeacher('${name}')" title="قيم تجربتك مع الأستاذ">
+                            <i class="fa-solid fa-star-half-stroke"></i> قيم تجربتك
+                        </button>
+                        ${link ? `<a href="${link}" target="_blank" class="btn-contact"><i class="fa-solid fa-user"></i> رابط صفحة الأستاذ</a>` : ''}
                     </div>
-                </div>
-                <div class="card-footer">
-                    <button class="btn-rate-icon" onclick="rateTeacher('${name}')" title="قيم تجربتك مع الأستاذ">
-                        <i class="fa-solid fa-star-half-stroke"></i> قيم تجربتك
-                    </button>
-                    ${link ? `<a href="${link}" target="_blank" class="btn-contact"><i class="fa-solid fa-user"></i> رابط صفحة الأستاذ</a>` : ''}
-                </div>
-            `;
+                `;
 
-            grid.prepend(newCard);
+                grid.prepend(newCard);
 
-            alert("شكراً لك أستاذ(ة) " + name + "!\nتم تسجيل بياناتك وإضافتك إلى الدليل بنجاح.");
-            event.target.reset();
-            switchPage('home');
+                alert("شكراً لك أستاذ(ة) " + name + "!\nتم تسجيل بياناتك وإرسالها إلى جدول البيانات بنجاح.");
+                event.target.reset();
+                switchPage('home');
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert("حدث خطأ أثناء إرسال البيانات، يرجى التحقق من الاتصال.");
+            });
         }
     </script>
 </body>
