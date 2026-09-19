@@ -530,7 +530,7 @@
     <!-- الإعلان المتحرك (من اليسار إلى اليمين) -->
     <div class="marquee-container">
         <div class="marquee-content">
-            الأستاذة حسيبة دريس تعلن عن توفير حصص دعم لمختلف المستويات (الابتدائي، تحضير BEM، والثانوي)، للتواصل والاستفسار: 0675456162 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🌟 مرحباً بكم في منصة الواحة للإنجليزية بولاية ورقلة 🌟
+            🌟 مرحباً بكم في منصة الواحة للإنجليزية بولاية ورقلة 🌟
         </div>
     </div>
 
@@ -755,7 +755,8 @@
     <!-- الوظائف البرمجية (الجلب التلقائي والتسجيل الفوري) -->
     <script>
         // رابط الـ Web App الخاص بك لجلب وتسجيل البيانات
-const scriptURL = 'https://script.google.com/macros/s/AKfycbykohWAH8-e8_v6wLmx3SFJePQGNCzhDkeM-MDAT2_1_yjv2AiCgTeQm0TCqz7JdXYugg/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbykohWAH8-e8_v6wLmx3SFJePQGNCzhDkeM-MDAT2_1_yjv2AiCgTeQm0TCqz7JdXYugg/exec';
+        
         // جلب الأساتذة تلقائياً عند تحميل الصفحة
         window.addEventListener('DOMContentLoaded', () => {
             fetchTeachers();
@@ -870,36 +871,18 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbykohWAH8-e8_v6wLmx3S
                 link: link
             };
 
-            // استخدام طريقة الإرسال الآمنة التي تتجاوز قيود CORS دون أخطاء
-            let formElement = document.createElement('form');
-            formElement.method = 'POST';
-            formElement.action = scriptURL;
-            formElement.target = 'hidden_iframe';
+            // إرسال البيانات بطريقة آمنة وخفية عبر الـ URL لتتجاوز قيود CORS نهائياً
+            let queryString = Object.keys(formData).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(formData[key])).join('&');
+            let fullURL = scriptURL + "?" + queryString;
 
-            let inputField = document.createElement('input');
-            inputField.type = 'hidden';
-            inputField.name = 'data';
-            inputField.value = JSON.stringify(formData);
-            formElement.appendChild(inputField);
+            let img = new Image();
+            img.src = fullURL;
 
-            let iframe = document.getElementById('hidden_iframe');
-            if (!iframe) {
-                iframe = document.createElement('iframe');
-                iframe.name = 'hidden_iframe';
-                iframe.id = 'hidden_iframe';
-                iframe.style.display = 'none';
-                document.body.appendChild(iframe);
-            }
-
-            document.body.appendChild(formElement);
-            formElement.submit();
-            document.body.removeChild(formElement);
-
-            alert("شكراً لك أستاذ(ة) " + name + "!\nتم تسجيل بياناتك وإرسالها إلى جدول البيانات بنجاح.");
+            alert("شكراً لك أستاذ(ة) " + name + "!\nتم إرسال بياناتك بنجاح وستظهر في الدليل فوراً.");
             event.target.reset();
             switchPage('home');
             
-            // إعادة جلب القائمة لتحديث البطاقات تلقائياً بعد ثانيتين
+            // تحديث القائمة بعد ثانيتين لترين الأستاذة المسجلة تظهر أمامك مباشرة
             setTimeout(fetchTeachers, 2000);
         }
     </script>
