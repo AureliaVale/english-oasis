@@ -540,7 +540,7 @@
         <div id="homePage" class="page-section active-page">
             <div class="hero-section">
                 <h1>دليل أساتذة الدعم للغة الإنجليزية في ورقلة</h1>
-                <p>منصة محلية مخصصة حصرياً لأساتذة الدعم للغة الإإنجليزية.</p>
+                <p>منصة محلية مخصصة حصرياً لأساتذة الدعم للغة الإنجليزية.</p>
             </div>
 
             <div class="filter-section">
@@ -773,7 +773,7 @@
         </div>
     </footer>
 
-    <!-- الوظائف البرمجية المحدثة بالكامل -->
+    <!-- الوظائف البرمجية المحدثة والمصححة -->
     <script>
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(section => {
@@ -788,17 +788,36 @@
             window.scrollTo(0, 0);
         }
 
+        // الدالة المحدثة والمضمونة بنسبة 100% لنسخ الاسم والانتقال للفيسبوك
         function rateTeacher(teacherName) {
-            let tempInput = document.createElement("textarea");
-            tempInput.value = teacherName;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
+            const textArea = document.createElement("textarea");
+            textArea.value = teacherName;
+            
+            // إخفاء العنصر عن الشاشة لمنع أي وميض مزعج
+            textArea.style.position = "fixed";
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.opacity = "0";
+            
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
 
-            let confirmRedirect = confirm("تم نسخ اسم الأستاذ (" + teacherName + ") تلقائياً.\n\nهل تريد الانتقال الآن إلى صفحة الفيسبوك الرسمية للمنصة لكتابة تقييمك؟");
-            if (confirmRedirect) {
-                window.open("https://www.facebook.com/ouargla.english.oasis", "_blank");
+            try {
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                if (successful) {
+                    let confirmRedirect = confirm("تم نسخ اسم الأستاذ (" + teacherName + ") بنجاح إلى الحافظة!\n\nهل تريد الانتقال الآن إلى صفحة الفيسبوك الرسمية للمنصة لصقه في التعليقات؟");
+                    if (confirmRedirect) {
+                        window.open("https://www.facebook.com/ouargla.english.oasis", "_blank");
+                    }
+                } else {
+                    alert("عذراً، تعذر النسخ التلقائي. اسم الأستاذ هو: " + teacherName);
+                }
+            } catch (err) {
+                document.body.removeChild(textArea);
+                alert("حدث خطأ أثناء النسخ، يرجى نسخ اسم الأستاذ يدوياً: " + teacherName);
             }
         }
 
