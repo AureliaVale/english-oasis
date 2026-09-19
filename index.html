@@ -219,13 +219,17 @@
             background-color: #bc8a5f;
         }
 
-        /* --- منبر الأستاذ (بالإنجليزية فقط) --- */
+        /* --- منبر الأستاذ (متحرك ومتنوع بين الإنجليزية والعربية) --- */
         .teacher-tribune {
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             border-right: 5px solid var(--primary-color);
             padding: 1.2rem 1.5rem;
             border-radius: 8px;
             margin-bottom: 2.5rem;
+            min-height: 95px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .teacher-tribune h3 {
@@ -234,12 +238,11 @@
             margin-bottom: 0.3rem;
         }
 
-        .teacher-tribune p {
+        .tribune-text {
             font-size: 1rem;
             color: #333;
-            direction: ltr;
-            text-align: left;
             font-weight: 600;
+            transition: opacity 0.5s ease-in-out;
         }
 
         /* --- بطاقات الأساتذة --- */
@@ -576,10 +579,10 @@
                 </div>
             </div>
 
-            <!-- منبر الأستاذ (بالإنجليزية فقط) -->
+            <!-- منبر الأستاذ (متحرك تلقائياً ومنوع بين الإنجليزية والعربية) -->
             <div class="teacher-tribune">
-                <h3><i class="fa-solid fa-lightbulb"></i> Teacher's Corner</h3>
-                <p>"To have another language is to possess a second soul."</p>
+                <h3><i class="fa-solid fa-lightbulb"></i> <span id="tribuneTitle">Teacher's Corner</span></h3>
+                <p id="tribuneText" class="tribune-text">"To have another language is to possess a second soul."</p>
             </div>
 
             <h2 class="section-title">دليل أساتذة الدعم المعتمدين</h2>
@@ -750,6 +753,68 @@
 
     <!-- الوظائف البرمجية -->
     <script>
+        // مأثورات ومقولات متنوعة (بالإنجليزية والعربية) لمنبر الأستاذ
+        const tribuneItems = [
+            {
+                title: "Teacher's Corner",
+                text: "\"To have another language is to possess a second soul.\"",
+                dir: "ltr"
+            },
+            {
+                title: "منبر الأستاذ",
+                text: "التعليم ليس ملء وعاء، بل إيقاد شعلة.",
+                dir: "rtl"
+            },
+            {
+                title: "Teacher's Corner",
+                text: "\"Education is not the filling of a pail, but the lighting of a fire.\"",
+                dir: "ltr"
+            },
+            {
+                title: "منبر الأستاذ",
+                text: "فن التدريس هو فن مساعدة الطلاب على اكتشاف المعرفة بأنفسهم.",
+                dir: "rtl"
+            },
+            {
+                title: "Teacher's Corner",
+                text: "\"A good teacher can inspire hope, ignite the imagination, and instill a love of learning.\"",
+                dir: "ltr"
+            },
+            {
+                title: "منبر الأستاذ",
+                text: "المعلم الناجح هو الذي يغرس في نفوس طلابه حب التعلم لا مجرد حفظ الدروس.",
+                dir: "rtl"
+            }
+        ];
+
+        let currentTribuneIndex = 0;
+
+        function rotateTribune() {
+            const titleEl = document.getElementById('tribuneTitle');
+            const textEl = document.getElementById('tribuneText');
+            
+            if(!titleEl || !textEl) return;
+
+            // تأثير تراجع خفيف عند التبديل
+            textEl.style.opacity = 0;
+            
+            setTimeout(() => {
+                currentTribuneIndex = (currentTribuneIndex + 1) % tribuneItems.length;
+                let item = tribuneItems[currentTribuneIndex];
+                
+                titleEl.textContent = item.title;
+                textEl.textContent = item.text;
+                textEl.style.direction = item.dir;
+                textEl.style.textAlign = (item.dir === 'ltr') ? 'left' : 'right';
+                
+                textEl.style.opacity = 1;
+            }, 300);
+        }
+
+        // تغيير العبارة تلقائياً كل 8 ثوانٍ
+        setInterval(rotateTribune, 8000);
+
+
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active-page');
