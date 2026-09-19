@@ -773,7 +773,7 @@
         </div>
     </footer>
 
-    <!-- الوظائف البرمجية مع التعديل النهائي المضمون للكمبيوتر -->
+    <!-- الوظائف البرمجية (بدون نسخ أو لصق، الانتقال المباشر للفيسبوك) -->
     <script>
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(section => {
@@ -788,31 +788,11 @@
             window.scrollTo(0, 0);
         }
 
-        // دالة تقييم الأستاذ المعدلة لتناسب الكمبيوتر ومتصفحات الويب محلياً
+        // دالة التقييم المباشرة: تعرض اسم الأستاذ وتنتقل فوراً لصفحة الفيسبوك دون أي نسخ أو لصق
         function rateTeacher(teacherName) {
-            // محاولة النسخ عبر الحافظة بالطريقة الخفية
-            const textArea = document.createElement("textarea");
-            textArea.value = teacherName;
-            textArea.style.position = "fixed";
-            textArea.style.top = "0";
-            textArea.style.left = "0";
-            textArea.style.opacity = "0";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            
-            try {
-                document.execCommand('copy');
-            } catch (err) {
-                console.log('نسخ يدوي');
-            }
-            document.body.removeChild(textArea);
-
-            // إظهار رسالة واضحة للمستخدم تعرض اسم الأستاذ وتوجهه للفيسبوك
             let userConfirmation = confirm(
                 "🌟 تقييم الأستاذ: " + teacherName + "\n\n" +
-                "تم نسخ اسم الأستاذ (أو يمكنك نسخه بيدك).\n" +
-                "اضغط (موافق) للانتقال الآن إلى صفحة الفيسبوك الخاصة بمنصة الواحة للإنجليزية لكتابة تقييمك في التعليقات."
+                "اضغط (موافق) للانتقال المباشر إلى صفحة الفيسبوك الخاصة بمنصة الواحة للإنجليزية لترك تقييمك."
             );
 
             if (userConfirmation) {
