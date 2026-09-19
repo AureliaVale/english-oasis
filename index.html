@@ -540,7 +540,7 @@
         <div id="homePage" class="page-section active-page">
             <div class="hero-section">
                 <h1>دليل أساتذة الدعم للغة الإنجليزية في ورقلة</h1>
-                <p>منصة محلية مخصصة حصرياً لأساتذة الدعم للغة الإنجليزية.</p>
+                <p>منصة محلية مخصصة حصرياً لأساتذة الدعم للغة الإإنجليزية.</p>
             </div>
 
             <div class="filter-section">
@@ -577,13 +577,13 @@
                     <label for="filterMunicipality">البلدية</label>
                     <select id="filterMunicipality">
                         <option value="">كل البلديات</option>
-                        <option value="ouargla">ورقلة</option>
-                        <option value="rouissat">الرويسات</option>
-                        <option value="angoussa">أنقوسة</option>
-                        <option value="sidi-khouiled">سيدي خويلد</option>
-                        <option value="hassi-messaoud">حاسي مسعود</option>
-                        <option value="ain-beida">عين البيضاء</option>
-                        <option value="el-borma">البرمة</option>
+                        <option value="ورقلة">ورقلة</option>
+                        <option value="الرويسات">الرويسات</option>
+                        <option value="أنقوسة">أنقوسة</option>
+                        <option value="سيدي خويلد">سيدي خويلد</option>
+                        <option value="حاسي مسعود">حاسي مسعود</option>
+                        <option value="عين البيضاء">عين البيضاء</option>
+                        <option value="البرمة">البرمة</option>
                     </select>
                 </div>
 
@@ -871,25 +871,37 @@
                 link: link
             };
 
-            fetch(scriptURL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => {
-                alert("شكراً لك أستاذ(ة) " + name + "!\nتم تسجيل بياناتك وإرسالها إلى جدول البيانات بنجاح.");
-                event.target.reset();
-                switchPage('home');
-                // إعادة جلب القائمة لتحديث البطاقات تلقائياً
-                setTimeout(fetchTeachers, 1500);
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                alert("حدث خطأ أثناء إرسال البيانات، يرجى التحقق من الاتصال.");
-            });
+            // استخدام طريقة الإرسال الآمنة التي تتجاوز قيود CORS دون أخطاء
+            let formElement = document.createElement('form');
+            formElement.method = 'POST';
+            formElement.action = scriptURL;
+            formElement.target = 'hidden_iframe';
+
+            let inputField = document.createElement('input');
+            inputField.type = 'hidden';
+            inputField.name = 'data';
+            inputField.value = JSON.stringify(formData);
+            formElement.appendChild(inputField);
+
+            let iframe = document.getElementById('hidden_iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.name = 'hidden_iframe';
+                iframe.id = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
+
+            document.body.appendChild(formElement);
+            formElement.submit();
+            document.body.removeChild(formElement);
+
+            alert("شكراً لك أستاذ(ة) " + name + "!\nتم تسجيل بياناتك وإرسالها إلى جدول البيانات بنجاح.");
+            event.target.reset();
+            switchPage('home');
+            
+            // إعادة جلب القائمة لتحديث البطاقات تلقائياً بعد ثانيتين
+            setTimeout(fetchTeachers, 2000);
         }
     </script>
 </body>
