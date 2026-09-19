@@ -773,7 +773,7 @@
         </div>
     </footer>
 
-    <!-- الوظائف البرمجية المحدثة والمصححة -->
+    <!-- الوظائف البرمجية مع التعديل النهائي المضمون للكمبيوتر -->
     <script>
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(section => {
@@ -788,36 +788,35 @@
             window.scrollTo(0, 0);
         }
 
-        // الدالة المحدثة والمضمونة بنسبة 100% لنسخ الاسم والانتقال للفيسبوك
+        // دالة تقييم الأستاذ المعدلة لتناسب الكمبيوتر ومتصفحات الويب محلياً
         function rateTeacher(teacherName) {
+            // محاولة النسخ عبر الحافظة بالطريقة الخفية
             const textArea = document.createElement("textarea");
             textArea.value = teacherName;
-            
-            // إخفاء العنصر عن الشاشة لمنع أي وميض مزعج
             textArea.style.position = "fixed";
             textArea.style.top = "0";
             textArea.style.left = "0";
             textArea.style.opacity = "0";
-            
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
-
+            
             try {
-                const successful = document.execCommand('copy');
-                document.body.removeChild(textArea);
-                
-                if (successful) {
-                    let confirmRedirect = confirm("تم نسخ اسم الأستاذ (" + teacherName + ") بنجاح إلى الحافظة!\n\nهل تريد الانتقال الآن إلى صفحة الفيسبوك الرسمية للمنصة لصقه في التعليقات؟");
-                    if (confirmRedirect) {
-                        window.open("https://www.facebook.com/ouargla.english.oasis", "_blank");
-                    }
-                } else {
-                    alert("عذراً، تعذر النسخ التلقائي. اسم الأستاذ هو: " + teacherName);
-                }
+                document.execCommand('copy');
             } catch (err) {
-                document.body.removeChild(textArea);
-                alert("حدث خطأ أثناء النسخ، يرجى نسخ اسم الأستاذ يدوياً: " + teacherName);
+                console.log('نسخ يدوي');
+            }
+            document.body.removeChild(textArea);
+
+            // إظهار رسالة واضحة للمستخدم تعرض اسم الأستاذ وتوجهه للفيسبوك
+            let userConfirmation = confirm(
+                "🌟 تقييم الأستاذ: " + teacherName + "\n\n" +
+                "تم نسخ اسم الأستاذ (أو يمكنك نسخه بيدك).\n" +
+                "اضغط (موافق) للانتقال الآن إلى صفحة الفيسبوك الخاصة بمنصة الواحة للإنجليزية لكتابة تقييمك في التعليقات."
+            );
+
+            if (userConfirmation) {
+                window.open("https://www.facebook.com/ouargla.english.oasis", "_blank");
             }
         }
 
