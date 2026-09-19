@@ -773,7 +773,7 @@
         </div>
     </footer>
 
-    <!-- الوظائف البرمجية المحدثة مع رابط جدول البيانات -->
+    <!-- الوظائف البرمجية المحدثة بالكامل -->
     <script>
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(section => {
@@ -811,7 +811,6 @@
         function handleRegistration(event) {
             event.preventDefault();
             
-            // جمع البيانات بالترتيب الصحيح (التاريخ، الاسم، الدعم، المكان، البلدية، الهاتف، الرابط)
             let currentDate = new Date().toLocaleDateString('ar-DZ');
             let name = document.getElementById('regName').value;
             let municipality = document.getElementById('regMunicipality').value;
@@ -831,7 +830,6 @@
                 link: link
             };
 
-            // رابط الـ Web App الخاص بك مدمج وجاهز تماماً
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwcS8e94c3s2FYkkpLz8vCoJOftpAQG0ioIYV0fACtTPxXu33H6THDs2ZVmHYlgfneImw/exec';
 
             fetch(scriptURL, {
