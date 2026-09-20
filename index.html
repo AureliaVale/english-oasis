@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الواحة للإنجليزية (English Oasis) - ورقلة</title>
-    <!-- خط Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- مكتبة الأيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             --primary-color: #0d5c46;
@@ -19,499 +17,231 @@
             --white: #ffffff;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
 
-        body {
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
+        body { background-color: var(--secondary-color); color: var(--text-color); line-height: 1.6; }
 
-        /* --- الهيدر النظيف بالشعار واسم المنصة بالخط العريض --- */
         header {
             background: var(--white);
             border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            position: sticky; top: 0; z-index: 1000;
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            max-width: 1200px; margin: 0 auto; padding: 0.8rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        .logo-area { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; cursor: pointer; }
+        .site-logo { height: 45px; width: auto; object-fit: contain; }
+        .site-title-bold { font-size: 1.25rem; font-weight: 700; color: var(--primary-color); }
 
-        .site-logo {
-            height: 45px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .site-title-bold {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.8rem;
-            align-items: center;
-        }
-
+        .nav-links { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
         .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 600;
-            transition: color 0.3s;
-            cursor: pointer;
-            font-size: 0.95rem;
+            text-decoration: none; color: var(--text-color); font-weight: 600;
+            transition: color 0.3s; cursor: pointer; font-size: 0.95rem;
         }
+        .nav-links a:hover { color: var(--primary-color); }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* --- الإعلان المتحرك (من اليسار إلى اليمين) --- */
         .marquee-container {
-            background-color: #fff3cd;
-            color: #856404;
-            padding: 0.6rem 0;
-            font-weight: 600;
-            border-bottom: 1px solid #ffeeba;
-            overflow: hidden;
-            white-space: nowrap;
+            background-color: #fff3cd; color: #856404; padding: 0.6rem 0;
+            font-weight: 600; border-bottom: 1px solid #ffeeba;
+            overflow: hidden; white-space: nowrap;
         }
-
-        .marquee-content {
-            display: inline-block;
-            animation: marqueeLeftToRight 25s linear infinite;
-        }
-
+        .marquee-content { display: inline-block; animation: marqueeLeftToRight 25s linear infinite; }
         @keyframes marqueeLeftToRight {
             0% { transform: translate(-100%, 0); }
             100% { transform: translate(100%, 0); }
         }
 
-        /* --- الحاويات الرئيسية --- */
-        .main-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+        .main-container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .page-section { display: none; }
+        .page-section.active-page { display: block; }
 
-        .page-section {
-            display: none;
-        }
+        .hero-section { text-align: center; margin-bottom: 2rem; }
+        .hero-section h1 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        .hero-section p { color: #666; font-size: 1.05rem; }
 
-        .page-section.active-page {
-            display: block;
-        }
-
-        .hero-section {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .hero-section h1 {
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-section p {
-            color: #666;
-            font-size: 1.05rem;
-        }
-
-        /* --- الفلاتر والمربعات مع زر البحث --- */
         .filter-section {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            margin-bottom: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            align-items: end;
+            background: var(--white); padding: 1.5rem; border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02); margin-bottom: 2rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem; align-items: end;
         }
 
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .filter-group label {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
+        .filter-group { display: flex; flex-direction: column; gap: 0.4rem; }
+        .filter-group label { font-size: 0.95rem; font-weight: 700; color: var(--primary-color); }
         .filter-group input[type="text"], .filter-group select {
-            padding: 0.7rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 0.95rem;
-            background: var(--white);
+            padding: 0.7rem; border: 1px solid var(--border-color);
+            border-radius: 6px; font-size: 0.95rem; background: var(--white);
         }
 
         .checkbox-group-container {
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 0.6rem;
-            max-height: 130px;
-            overflow-y: auto;
-            background: #fafafa;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
+            border: 1px solid var(--border-color); border-radius: 6px; padding: 0.6rem;
+            max-height: 130px; overflow-y: auto; background: #fafafa;
+            display: flex; flex-direction: column; gap: 0.4rem;
         }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-
-        .checkbox-item input {
-            accent-color: var(--primary-color);
-            width: 16px;
-            height: 16px;
-        }
+        .checkbox-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; cursor: pointer; }
+        .checkbox-item input { accent-color: var(--primary-color); width: 16px; height: 16px; }
 
         .btn-search-action {
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 0.7rem 1.2rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-            height: 45px;
+            background-color: var(--accent-color); color: var(--white);
+            padding: 0.7rem 1.2rem; border: none; border-radius: 6px;
+            font-size: 1rem; font-weight: bold; cursor: pointer;
+            transition: background 0.2s; height: 45px;
+        }
+        .btn-search-action:hover { background-color: #bc8a5f; }
+
+        .btn-reset-action {
+            background: none; border: none; color: var(--primary-color);
+            font-size: 0.85rem; font-weight: 600; cursor: pointer;
+            margin-top: 0.5rem; text-decoration: underline;
         }
 
-        .btn-search-action:hover {
-            background-color: #bc8a5f;
-        }
-
-        /* --- منبر الأستاذ (بالإنجليزية فقط) --- */
         .teacher-tribune {
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             border-right: 5px solid var(--primary-color);
-            padding: 1.2rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2.5rem;
+            padding: 1.2rem 1.5rem; border-radius: 8px; margin-bottom: 2.5rem;
         }
-
-        .teacher-tribune h3 {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-
+        .teacher-tribune h3 { color: var(--primary-color); font-size: 1.1rem; margin-bottom: 0.3rem; }
         .teacher-tribune p {
-            font-size: 1rem;
-            color: #333;
-            direction: ltr;
-            text-align: left;
-            font-weight: 600;
+            font-size: 1rem; color: #333; direction: ltr;
+            text-align: left; font-weight: 600;
         }
 
-        /* --- بطاقات الأساتذة --- */
         .section-title {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
+            font-size: 1.5rem; color: var(--primary-color); margin-bottom: 1.5rem;
             border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.4rem;
-            display: inline-block;
+            padding-bottom: 0.4rem; display: inline-block;
         }
 
-        .directory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
+        .results-count { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
+
+        .directory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
 
         .teacher-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background: var(--white); border-radius: 12px; padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03); border: 1px solid var(--border-color);
+            display: flex; flex-direction: column; justify-content: space-between;
         }
 
-        .teacher-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
+        .teacher-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
 
         .teacher-avatar {
-            width: 55px;
-            height: 55px;
-            background: var(--secondary-color);
-            color: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            font-weight: 700;
+            width: 55px; height: 55px; background: var(--secondary-color);
+            color: var(--primary-color); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; font-weight: 700; flex-shrink: 0;
         }
 
-        .teacher-info h4 {
-            font-size: 1.1rem;
-        }
-
+        .teacher-info h4 { font-size: 1.1rem; }
         .teacher-info span {
-            font-size: 0.85rem;
-            color: var(--primary-color);
-            background: var(--secondary-color);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            display: inline-block;
-            margin-top: 0.2rem;
+            font-size: 0.85rem; color: var(--primary-color); background: var(--secondary-color);
+            padding: 0.2rem 0.6rem; border-radius: 4px; display: inline-block; margin-top: 0.2rem;
         }
 
         .teacher-details {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
+            font-size: 0.9rem; color: #555; margin-bottom: 1.2rem;
+            display: flex; flex-direction: column; gap: 0.4rem;
         }
-
-        .teacher-details i {
-            color: var(--primary-color);
-            margin-left: 0.4rem;
-            width: 16px;
-        }
+        .teacher-details i { color: var(--primary-color); margin-left: 0.4rem; width: 16px; }
 
         .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-            margin-top: auto;
-            gap: 0.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid var(--border-color); padding-top: 1rem;
+            margin-top: auto; gap: 0.5rem;
         }
 
         .btn-rate-icon {
-            background: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: transform 0.2s;
+            background: #fff3cd; border: 1px solid #ffeeba; color: #856404;
+            padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer;
+            font-size: 0.8rem; font-weight: 600; transition: transform 0.2s;
         }
-
-        .btn-rate-icon:hover {
-            transform: scale(1.05);
-        }
+        .btn-rate-icon:hover { transform: scale(1.05); }
 
         .btn-contact {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-align: center;
+            background-color: var(--primary-color); color: var(--white);
+            padding: 0.4rem 0.8rem; border-radius: 6px; text-decoration: none;
+            font-size: 0.8rem; font-weight: 600; text-align: center;
         }
 
-        /* --- النماذج وصفحة التسجيل المباشر --- */
         .content-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-            max-width: 800px;
-            margin: 0 auto;
+            background: var(--white); padding: 2.5rem; border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03); max-width: 800px; margin: 0 auto;
         }
+        .content-card h2 { color: var(--primary-color); margin-bottom: 1rem; }
 
-        .content-card h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
+        .form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
+        .form-group label { font-weight: 600; color: var(--primary-color); }
         .form-group input, .form-group select, .form-group textarea {
-            padding: 0.7rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 0.95rem;
+            padding: 0.7rem; border: 1px solid var(--border-color);
+            border-radius: 6px; font-size: 0.95rem;
         }
 
         .btn-submit {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 1rem;
+            background-color: var(--primary-color); color: var(--white);
+            padding: 0.8rem 1.5rem; border: none; border-radius: 6px;
+            font-size: 1rem; font-weight: bold; cursor: pointer;
+            width: 100%; margin-top: 1rem;
         }
+        .btn-submit:hover { background-color: #083b2d; }
+        .btn-submit:disabled { background-color: #999; cursor: not-allowed; }
 
-        .btn-submit:hover {
-            background-color: #083b2d;
-        }
-
-        /* --- صفحة الإعلانات المستقلة --- */
         .ads-container {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
-            max-width: 900px;
-            margin: 0 auto;
+            background: var(--white); padding: 2.5rem; border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03); max-width: 900px; margin: 0 auto;
         }
 
         .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem; margin: 2rem 0;
         }
 
         .pricing-card {
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            background: var(--secondary-color);
+            border: 2px solid var(--border-color); border-radius: 10px;
+            padding: 2rem; text-align: center; background: var(--secondary-color);
         }
-
-        .pricing-card.featured {
-            border-color: var(--primary-color);
-            background: var(--white);
-        }
-
-        .price {
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 1rem 0;
-        }
+        .pricing-card.featured { border-color: var(--primary-color); background: var(--white); }
+        .price { font-size: 2rem; font-weight: 700; margin: 1rem 0; }
 
         .btn-whatsapp-book {
-            display: inline-block;
-            background-color: #25d366;
-            color: #fff;
-            padding: 0.7rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            width: 100%;
-            text-align: center;
+            display: inline-block; background-color: #25d366; color: #fff;
+            padding: 0.7rem 1.5rem; border-radius: 6px; text-decoration: none;
+            font-weight: 600; width: 100%; text-align: center;
         }
 
         .payment-info {
-            background: #f9f9f9;
-            border: 1px dashed var(--primary-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 2rem;
+            background: #f9f9f9; border: 1px dashed var(--primary-color);
+            padding: 1.5rem; border-radius: 8px; margin-top: 2rem;
         }
 
         .rip-code {
-            font-family: monospace;
-            background: #fff;
-            padding: 0.3rem 0.6rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-weight: bold;
-            color: var(--primary-color);
+            font-family: monospace; background: #fff; padding: 0.3rem 0.6rem;
+            border: 1px solid var(--border-color); border-radius: 4px;
+            font-weight: bold; color: var(--primary-color);
         }
 
-        /* --- التذييل --- */
         footer {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 2rem 1rem;
-            margin-top: 3rem;
-            text-align: center;
+            background-color: var(--primary-color); color: var(--white);
+            padding: 2rem 1rem; margin-top: 3rem; text-align: center;
         }
 
         .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
+            max-width: 1200px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 1rem; align-items: center;
         }
 
         .footer-links {
-            display: flex;
-            gap: 1.5rem;
-            font-size: 0.95rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: flex; gap: 1.5rem; font-size: 0.95rem;
+            flex-wrap: wrap; justify-content: center;
         }
-
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
-        }
+        .footer-links a { color: var(--white); text-decoration: none; cursor: pointer; }
+        .footer-links a:hover { color: var(--accent-color); }
     </style>
 </head>
 <body>
 
-    <!-- الهيدر بالشعار واسم المنصة العريض -->
     <header>
         <div class="nav-container">
             <a class="logo-area" onclick="switchPage('home')">
@@ -527,10 +257,9 @@
         </div>
     </header>
 
-    <!-- الإعلان المتحرك (من اليسار إلى اليمين) -->
     <div class="marquee-container">
         <div class="marquee-content">
-            🌟 مرحباً بكم في منصة الواحة للإنجليزية بولاية ورقلة 🌟
+            الأستاذة حسيبة دريس تعلن عن توفير حصص دعم لمختلف المستويات (الابتدائي، تحضير BEM، والثانوي)، للتواصل والاستفسار: 0675456162 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🌟 مرحباً بكم في منصة الواحة للإنجليزية بولاية ورقلة 🌟
         </div>
     </div>
 
@@ -540,7 +269,7 @@
         <div id="homePage" class="page-section active-page">
             <div class="hero-section">
                 <h1>دليل أساتذة الدعم للغة الإنجليزية في ورقلة</h1>
-                <p>منصة محلية مخصصة حصرياً لأساتذة الدعم للغة الإإنجليزية.</p>
+                <p>منصة محلية مخصصة حصرياً لأساتذة الدعم للغة الإنجليزية.</p>
             </div>
 
             <div class="filter-section">
@@ -552,24 +281,24 @@
                 <div class="filter-group">
                     <label>المرحلة / نوع الدعم</label>
                     <div class="checkbox-group-container">
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="primary"> الروضة والابتدائي</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="middle"> المتوسط</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="bem"> تحضير BEM</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="secondary"> الثانوي</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="bac"> تحضير BAC</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="esp"> ESP (الإنجليزية لغايات خاصّة)</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="ielts"> تحضير IELTS/TOEFL</label>
-                        <label class="checkbox-item"><input type="checkbox" name="support" value="general"> الإنجليزية العامة</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="الروضة والابتدائي"> الروضة والابتدائي</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="المتوسط"> المتوسط</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="تحضير BEM"> تحضير BEM</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="الثانوي"> الثانوي</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="تحضير BAC"> تحضير BAC</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="ESP"> ESP (الإنجليزية لغايات خاصّة)</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="تحضير IELTS/TOEFL"> تحضير IELTS/TOEFL</label>
+                        <label class="checkbox-item"><input type="checkbox" name="support" value="الإنجليزية العامة"> الإنجليزية العامة</label>
                     </div>
                 </div>
 
                 <div class="filter-group">
                     <label>مكان الدعم</label>
                     <div class="checkbox-group-container">
-                        <label class="checkbox-item"><input type="checkbox" name="location" value="center"> في مركز</label>
-                        <label class="checkbox-item"><input type="checkbox" name="location" value="teacher-home"> في منزل الأستاذ</label>
-                        <label class="checkbox-item"><input type="checkbox" name="location" value="student-home"> في منزل التلميذ</label>
-                        <label class="checkbox-item"><input type="checkbox" name="location" value="online"> أونلاين (Online)</label>
+                        <label class="checkbox-item"><input type="checkbox" name="location" value="في مركز"> في مركز</label>
+                        <label class="checkbox-item"><input type="checkbox" name="location" value="في منزل الأستاذ"> في منزل الأستاذ</label>
+                        <label class="checkbox-item"><input type="checkbox" name="location" value="في منزل التلميذ"> في منزل التلميذ</label>
+                        <label class="checkbox-item"><input type="checkbox" name="location" value="أونلاين"> أونلاين (Online)</label>
                     </div>
                 </div>
 
@@ -591,27 +320,26 @@
                     <button class="btn-search-action" onclick="applyFilters()">
                         <i class="fa-solid fa-search"></i> بحث
                     </button>
+                    <button class="btn-reset-action" onclick="resetFilters()">إعادة تعيين البحث</button>
                 </div>
             </div>
 
-            <!-- منبر الأستاذ (بالإنجليزية فقط) -->
             <div class="teacher-tribune">
                 <h3><i class="fa-solid fa-lightbulb"></i> Teacher's Corner</h3>
                 <p>"To have another language is to possess a second soul."</p>
             </div>
 
             <h2 class="section-title">دليل أساتذة الدعم المعتمدين</h2>
-            <div class="directory-grid">
-                <!-- ستتم تعبئة بطاقات الأساتذة تلقائياً من جدول البيانات عبر الجافاسكريبت -->
-            </div>
+            <div class="results-count" id="resultsCount"></div>
+            <div class="directory-grid"></div>
         </div>
 
         <!-- ب. صفحة "من نحن" -->
         <div id="aboutPage" class="page-section">
             <div class="content-card">
                 <h2>من نحن؟</h2>
-                <p>منصة **"الواحة للإنجليزية" (English Oasis)** هي منصة محلية رقمية مخصصة حصرياً لـ **أساتذة الدعم** للغة الإنجليزية في ولاية ورقلة.</p>
-                <p style="margin-top: 1rem;">هذه المنصة هي **همزة وصل** شفافة ومباشرة بين الأولياء والطلبة وبين أساتذة الدعم المعتمدين في مختلف بلديات الولاية.</p>
+                <p>منصة <strong>"الواحة للإنجليزية" (English Oasis)</strong> هي منصة محلية رقمية مخصصة حصرياً لـ <strong>أساتذة الدعم</strong> للغة الإنجليزية في ولاية ورقلة.</p>
+                <p style="margin-top: 1rem;">هذه المنصة هي <strong>همزة وصل</strong> شفافة ومباشرة بين الأولياء والطلبة وبين أساتذة الدعم المعتمدين في مختلف بلديات الولاية.</p>
             </div>
         </div>
 
@@ -620,8 +348,8 @@
             <div class="content-card">
                 <h2>تسجيل أستاذ دعم جديد</h2>
                 <p style="margin-bottom: 1.5rem; color: #555;">املأ النموذج أدناه لتسجيل بياناتك وتحديد خياراتك لتظهر مباشرة في الدليل:</p>
-                
-                <form onsubmit="handleRegistration(event)">
+
+                <form id="regForm" onsubmit="handleRegistration(event)">
                     <div class="form-group">
                         <label>الاسم الكامل للأستاذ:</label>
                         <input type="text" id="regName" required placeholder="مثال: الأستاذ محمد بن علي">
@@ -647,7 +375,7 @@
                             <label class="checkbox-item"><input type="checkbox" name="regLocation" value="في مركز"> في مركز</label>
                             <label class="checkbox-item"><input type="checkbox" name="regLocation" value="في منزل الأستاذ"> في منزل الأستاذ</label>
                             <label class="checkbox-item"><input type="checkbox" name="regLocation" value="في منزل التلميذ"> في منزل التلميذ</label>
-                            <label class="checkbox-item"><input type="checkbox" name="regLocation" value="أونلاين (Online)"> أونلاين (Online)</label>
+                            <label class="checkbox-item"><input type="checkbox" name="regLocation" value="أونلاين"> أونلاين (Online)</label>
                         </div>
                     </div>
 
@@ -674,7 +402,7 @@
                         <input type="url" id="regLink" placeholder="https://www.facebook.com/your-page أو رابط منصتك">
                     </div>
 
-                    <button type="submit" class="btn-submit">إرسال التسجيل مباشرة</button>
+                    <button type="submit" class="btn-submit" id="regSubmitBtn">إرسال التسجيل مباشرة</button>
                 </form>
             </div>
         </div>
@@ -736,7 +464,6 @@
 
     </div>
 
-    <!-- التذييل -->
     <footer>
         <div class="footer-container">
             <p style="font-size: 1.1rem; font-weight: 600;">الواحة للإنجليزية (English Oasis) - ورقلة</p>
@@ -752,138 +479,225 @@
         </div>
     </footer>
 
-    <!-- الوظائف البرمجية (الجلب التلقائي والتسجيل الفوري) -->
     <script>
-        // رابط الـ Web App الخاص بك لجلب وتسجيل البيانات
+        // ====== رابط الـ Web App ======
         const scriptURL = 'https://script.google.com/macros/s/AKfycbykohWAH8-e8_v6wLmx3SFJePQGNCzhDkeM-MDAT2_1_yjv2AiCgTeQm0TCqz7JdXYugg/exec';
-        
-        // جلب الأساتذة تلقائياً عند تحميل الصفحة
-        window.addEventListener('DOMContentLoaded', () => {
-            fetchTeachers();
-        });
 
+        // كل الأساتذة المحملين (تُستعمل للتصفية بدون إعادة تحميل)
+        let allTeachers = [];
+
+        window.addEventListener('DOMContentLoaded', fetchTeachers);
+
+        // ---------- جلب الأساتذة ----------
         function fetchTeachers() {
-            let grid = document.querySelector('.directory-grid');
-            if(!grid) return;
+            const grid = document.querySelector('.directory-grid');
+            const counter = document.getElementById('resultsCount');
+            if (!grid) return;
 
-            grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: var(--primary-color); font-weight: 600;">جاري تحميل قائمة الأساتذة...</p>';
+            counter.textContent = '';
+            grid.innerHTML = '<p style="text-align:center; grid-column:1/-1; color:var(--primary-color); font-weight:600;">جاري تحميل قائمة الأساتذة...</p>';
 
             fetch(scriptURL)
-                .then(response => response.json())
-                .then(data => {
-                    grid.innerHTML = '';
-
-                    if (!data || data.length === 0) {
-                        grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #666;">لا يوجد أساتذة مسجلين حالياً. كن أول المنضمين!</p>';
-                        return;
+                .then(function (response) {
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    return response.text();
+                })
+                .then(function (text) {
+                    let data;
+                    try {
+                        data = JSON.parse(text);
+                    } catch (err) {
+                        throw new Error('الرد ليس JSON — تحقق من إعدادات النشر (Anyone)');
                     }
 
-                    // عكس الترتيب لظهور أحدث التسجيلات في الأعلى
-                    data.reverse().forEach(teacher => {
-                        let initials = teacher.name.replace('الأستاذ', '').replace('استاذة', '').trim().split(' ').map(n => n[0]).join('.');
-                        if(!initials) initials = "أ.د";
+                    if (!Array.isArray(data)) data = [];
+                    // تطبيع البيانات: كل الحقول نصوص، لا قيم فارغة تكسر الكود
+                    allTeachers = data.map(function (t) {
+                        t = t || {};
+                        return {
+                            date:         String(t.date || ''),
+                            name:         String(t.name || '').trim(),
+                            support:      String(t.support || ''),
+                            location:     String(t.location || ''),
+                            municipality: String(t.municipality || ''),
+                            phone:        String(t.phone || '').replace(/^'/, ''),
+                            link:         String(t.link || '').trim()
+                        };
+                    }).filter(function (t) { return t.name !== ''; });
 
-                        let card = document.createElement('div');
-                        card.className = 'teacher-card';
-                        card.innerHTML = `
-                            <div>
-                                <div class="teacher-header">
-                                    <div class="teacher-info" style="text-align: right;">
-                                        <h4>${teacher.name}</h4>
-                                        <span>${teacher.support || 'دعم عام'}</span>
-                                    </div>
-                                    <div class="teacher-avatar">${initials}</div>
-                                </div>
-                                <div class="teacher-details">
-                                    <div><i class="fa-solid fa-location-dot"></i> البلدية: ${teacher.municipality || 'غير محدد'}</div>
-                                    <div><i class="fa-solid fa-building-user"></i> مكان الدعم: ${teacher.location || 'غير محدد'}</div>
-                                    <div><i class="fa-solid fa-phone"></i> الهاتف: ${teacher.phone || 'غير مسجل'}</div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn-rate-icon" onclick="rateTeacher('${teacher.name}')" title="قيم تجربتك مع الأستاذ">
-                                    <i class="fa-solid fa-star-half-stroke"></i> قيم تجربتك
-                                </button>
-                                ${teacher.link ? `<a href="${teacher.link}" target="_blank" class="btn-contact"><i class="fa-solid fa-user"></i> رابط صفحة الأستاذ</a>` : ''}
-                            </div>
-                        `;
-                        grid.appendChild(card);
-                    });
+                    renderTeachers(allTeachers.slice().reverse());
                 })
-                .catch(error => {
+                .catch(function (error) {
                     console.error('Error fetching teachers:', error);
-                    grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: red;">عفواً، حدث خطأ أثناء تحميل بيانات الأساتذة.</p>';
+                    grid.innerHTML = '<p style="text-align:center; grid-column:1/-1; color:#c0392b;">عفواً، تعذر تحميل بيانات الأساتذة.<br><span style="font-size:0.85rem; color:#888;">(' + error.message + ')</span><br><button class="btn-search-action" style="margin-top:1rem;" onclick="fetchTeachers()">إعادة المحاولة</button></p>';
                 });
         }
 
-        function switchPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active-page');
-            });
-            const targetPage = document.getElementById(pageId + 'Page');
-            if (targetPage) {
-                targetPage.classList.add('active-page');
-            } else {
-                document.getElementById('homePage').classList.add('active-page');
+        // ---------- عرض البطاقات ----------
+        function renderTeachers(list) {
+            const grid = document.querySelector('.directory-grid');
+            const counter = document.getElementById('resultsCount');
+            grid.innerHTML = '';
+
+            if (!list.length) {
+                counter.textContent = '';
+                grid.innerHTML = '<p style="text-align:center; grid-column:1/-1; color:#666;">لا يوجد أساتذة مطابقون لبحثك حالياً.</p>';
+                return;
             }
+
+            counter.textContent = 'عدد النتائج: ' + list.length;
+
+            list.forEach(function (teacher) {
+                const cleanName = teacher.name
+                    .replace('الأستاذة', '').replace('الأستاذ', '')
+                    .replace('استاذة', '').replace('استاذ', '').trim();
+
+                let initials = cleanName.split(/\s+/).filter(Boolean).map(function (n) { return n[0]; }).join('.');
+                if (!initials) initials = 'أ.د';
+
+                const card = document.createElement('div');
+                card.className = 'teacher-card';
+                card.innerHTML =
+                    '<div>' +
+                        '<div class="teacher-header">' +
+                            '<div class="teacher-info" style="text-align:right;">' +
+                                '<h4>' + esc(teacher.name) + '</h4>' +
+                                '<span>' + esc(teacher.support || 'دعم عام') + '</span>' +
+                            '</div>' +
+                            '<div class="teacher-avatar">' + esc(initials) + '</div>' +
+                        '</div>' +
+                        '<div class="teacher-details">' +
+                            '<div><i class="fa-solid fa-location-dot"></i> البلدية: ' + esc(teacher.municipality || 'غير محدد') + '</div>' +
+                            '<div><i class="fa-solid fa-building-user"></i> مكان الدعم: ' + esc(teacher.location || 'غير محدد') + '</div>' +
+                            '<div><i class="fa-solid fa-phone"></i> الهاتف: <span style="direction:ltr; display:inline-block;">' + esc(teacher.phone || 'غير مسجل') + '</span></div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="card-footer">' +
+                        '<button class="btn-rate-icon" onclick="rateTeacher(this.dataset.n)" data-n="' + esc(teacher.name) + '" title="قيم تجربتك مع الأستاذ">' +
+                            '<i class="fa-solid fa-star-half-stroke"></i> قيم تجربتك' +
+                        '</button>' +
+                        (teacher.link ? '<a href="' + esc(teacher.link) + '" target="_blank" rel="noopener" class="btn-contact"><i class="fa-solid fa-user"></i> رابط صفحة الأستاذ</a>' : '') +
+                    '</div>';
+                grid.appendChild(card);
+            });
+        }
+
+        // حماية بسيطة من كسر الـ HTML
+        function esc(str) {
+            return String(str)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // ---------- التنقل بين الصفحات ----------
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(function (s) { s.classList.remove('active-page'); });
+            const target = document.getElementById(pageId + 'Page');
+            (target || document.getElementById('homePage')).classList.add('active-page');
             window.scrollTo(0, 0);
         }
 
+        // ---------- التقييم ----------
         function rateTeacher(teacherName) {
-            navigator.clipboard.writeText(teacherName).then(function() {
-                let confirmRedirect = confirm("تم نسخ اسم الأستاذ (" + teacherName + ") تلقائياً.\n\nهل تريد الانتقال الآن إلى صفحة الفيسبوك الرسمية للمنصة لكتابة تقييمك؟");
-                if (confirmRedirect) {
-                    window.open("https://www.facebook.com/ouargla.english.oasis", "_blank");
+            const go = function () {
+                if (confirm('تم نسخ اسم الأستاذ (' + teacherName + ').\n\nهل تريد الانتقال إلى صفحة الفيسبوك لكتابة تقييمك؟')) {
+                    window.open('https://www.facebook.com/ouargla.english.oasis', '_blank');
                 }
-            }).catch(function(err) {
-                alert("عذراً، تعذر نسخ الاسم تلقائياً. يمكنك كتابته يدوياً: " + teacherName);
-            });
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(teacherName).then(go).catch(function () {
+                    alert('تعذر النسخ تلقائياً. الاسم: ' + teacherName);
+                    go();
+                });
+            } else {
+                go();
+            }
         }
 
+        // ---------- التصفية الفعلية ----------
         function applyFilters() {
-            let searchName = document.getElementById('searchName').value.trim();
-            let municipality = document.getElementById('filterMunicipality').value;
-            let selectedSupports = Array.from(document.querySelectorAll('input[name="support"]:checked')).map(el => el.value);
-            let selectedLocations = Array.from(document.querySelectorAll('input[name="location"]:checked')).map(el => el.value);
+            const nameQuery = document.getElementById('searchName').value.trim().toLowerCase();
+            const municipality = document.getElementById('filterMunicipality').value;
+            const supports  = Array.from(document.querySelectorAll('input[name="support"]:checked')).map(function (el) { return el.value; });
+            const locations = Array.from(document.querySelectorAll('input[name="location"]:checked')).map(function (el) { return el.value; });
 
-            alert("جاري تصفية النتائج بناءً على اختياراتك...");
+            const filtered = allTeachers.filter(function (t) {
+                if (nameQuery && t.name.toLowerCase().indexOf(nameQuery) === -1) return false;
+                if (municipality && t.municipality !== municipality) return false;
+
+                if (supports.length) {
+                    const ok = supports.some(function (s) { return t.support.indexOf(s) !== -1; });
+                    if (!ok) return false;
+                }
+                if (locations.length) {
+                    const ok = locations.some(function (l) { return t.location.indexOf(l) !== -1; });
+                    if (!ok) return false;
+                }
+                return true;
+            });
+
+            renderTeachers(filtered.reverse());
+            document.querySelector('.section-title').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        function resetFilters() {
+            document.getElementById('searchName').value = '';
+            document.getElementById('filterMunicipality').value = '';
+            document.querySelectorAll('input[name="support"], input[name="location"]').forEach(function (el) { el.checked = false; });
+            renderTeachers(allTeachers.slice().reverse());
+        }
+
+        // ---------- التسجيل ----------
         function handleRegistration(event) {
             event.preventDefault();
-            
-            let currentDate = new Date().toLocaleDateString('ar-DZ');
-            let name = document.getElementById('regName').value;
-            let municipality = document.getElementById('regMunicipality').value;
-            let phone = document.getElementById('regPhone').value;
-            let link = document.getElementById('regLink').value.trim();
 
-            let selectedSupports = Array.from(document.querySelectorAll('input[name="regSupport"]:checked')).map(el => el.value).join(', ');
-            let selectedLocations = Array.from(document.querySelectorAll('input[name="regLocation"]:checked')).map(el => el.value).join(' / ');
+            const btn = document.getElementById('regSubmitBtn');
+            btn.disabled = true;
+            btn.textContent = 'جاري الإرسال...';
 
-            let formData = {
-                date: currentDate,
-                name: name,
-                support: selectedSupports || 'دعم عام',
-                location: selectedLocations || 'غير محدد',
-                municipality: municipality,
-                phone: phone,
-                link: link
+            const formData = {
+                date: new Date().toLocaleDateString('ar-DZ'),
+                name: document.getElementById('regName').value.trim(),
+                support: Array.from(document.querySelectorAll('input[name="regSupport"]:checked')).map(function (el) { return el.value; }).join(', ') || 'دعم عام',
+                location: Array.from(document.querySelectorAll('input[name="regLocation"]:checked')).map(function (el) { return el.value; }).join(' / ') || 'غير محدد',
+                municipality: document.getElementById('regMunicipality').value,
+                phone: document.getElementById('regPhone').value.trim(),
+                link: document.getElementById('regLink').value.trim()
             };
 
-            // إرسال البيانات بطريقة آمنة وخفية عبر الـ URL لتتجاوز قيود CORS نهائياً
-            let queryString = Object.keys(formData).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(formData[key])).join('&');
-            let fullURL = scriptURL + "?" + queryString;
+            let iframe = document.getElementById('hidden_iframe');
+            if (!iframe) {
+                iframe = document.createElement('iframe');
+                iframe.name = 'hidden_iframe';
+                iframe.id = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
 
-            let img = new Image();
-            img.src = fullURL;
+            const formElement = document.createElement('form');
+            formElement.method = 'POST';
+            formElement.action = scriptURL;
+            formElement.target = 'hidden_iframe';
 
-            alert("شكراً لك أستاذ(ة) " + name + "!\nتم إرسال بياناتك بنجاح وستظهر في الدليل فوراً.");
-            event.target.reset();
-            switchPage('home');
-            
-            // تحديث القائمة بعد ثانيتين لترين الأستاذة المسجلة تظهر أمامك مباشرة
-            setTimeout(fetchTeachers, 2000);
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'data';
+            input.value = JSON.stringify(formData);
+            formElement.appendChild(input);
+
+            document.body.appendChild(formElement);
+            formElement.submit();
+            document.body.removeChild(formElement);
+
+            const teacherName = formData.name;
+            setTimeout(function () {
+                alert('شكراً لك أستاذ(ة) ' + teacherName + '!\nتم تسجيل بياناتك بنجاح.');
+                document.getElementById('regForm').reset();
+                btn.disabled = false;
+                btn.textContent = 'إرسال التسجيل مباشرة';
+                switchPage('home');
+                fetchTeachers();
+            }, 2500);
         }
     </script>
 </body>
