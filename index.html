@@ -172,6 +172,11 @@
         }
         .content-card h2 { color: var(--primary-color); margin-bottom: 1rem; }
 
+        .notice-box {
+            margin-top: 1rem; background: #fff3cd; border: 1px solid #ffeeba;
+            padding: 1rem; border-radius: 8px; color: #856404; font-size: 0.95rem;
+        }
+
         .form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; }
         .form-group label { font-weight: 600; color: var(--primary-color); }
         .form-group input, .form-group select, .form-group textarea {
@@ -314,7 +319,7 @@
 
             <div class="teacher-tribune">
                 <h3><i class="fa-solid fa-lightbulb"></i> Teacher's Corner</h3>
-                <p>"To have another language is to possess a second soul."</p>
+                <p id="dailyQuote">"To have another language is to possess a second soul."</p>
             </div>
 
             <h2 class="section-title">دليل أساتذة الدعم المسجلين</h2>
@@ -326,14 +331,22 @@
             <div class="content-card">
                 <h2>من نحن؟</h2>
                 <p>منصة <strong>"الواحة للإنجليزية" (English Oasis)</strong> هي منصة محلية رقمية مخصصة حصرياً لـ <strong>أساتذة الدعم</strong> للغة الإنجليزية في ولاية ورقلة.</p>
-                <p style="margin-top: 1rem;">هذه المنصة هي <strong>همزة وصل</strong> شفافة ومباشرة بين الأولياء والطلبة وبين أساتذة الدعم المعتمدين في مختلف بلديات الولاية.</p>
+                <p style="margin-top: 1rem;">هذه المنصة هي <strong>همزة وصل</strong> شفافة ومباشرة بين الأولياء والطلبة وبين أساتذة الدعم المسجلين في مختلف بلديات الولاية.</p>
+                <p class="notice-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    المنصة مجرد همزة وصل بين الأستاذ وطالب الدعم أو وليّ أمره، وعلى الأولياء وطالبي الدعم التحقق من مؤهلات وهوية الأستاذ قبل الاتفاق، ولا تتحمل المنصة أي مسؤولية عن جودة الدروس أو التعاملات التي تتم خارج نطاقها.
+                </p>
             </div>
         </div>
 
         <div id="registerPage" class="page-section">
             <div class="content-card">
                 <h2>تسجيل أستاذ دعم جديد</h2>
-                <p style="margin-bottom: 1.5rem; color: #555;">املأ النموذج أدناه لتسجيل بياناتك وتحديد خياراتك لتظهر مباشرة في الدليل:</p>
+                <p style="margin-bottom: 1rem; color: #555;">املأ النموذج أدناه لتسجيل بياناتك وتحديد خياراتك لتظهر مباشرة في الدليل:</p>
+                <p class="notice-box" style="margin-top: 0; margin-bottom: 1.5rem; font-size: 0.9rem;">
+                    <i class="fa-solid fa-circle-info"></i>
+                    بتسجيلك في المنصة، أنت تقر بصحة المعلومات المدخلة، وتتحمل مسؤولية التواصل المباشر مع أولياء الأمور.
+                </p>
 
                 <form id="regForm" onsubmit="handleRegistration(event)">
                     <div class="form-group">
@@ -461,7 +474,35 @@
 
         let allTeachers = [];
 
-        window.addEventListener('DOMContentLoaded', fetchTeachers);
+        // ====== اقتباس يومي متغير ======
+        const teacherQuotes = [
+            "To have another language is to possess a second soul.",
+            "Learning another language is not only learning different words for the same things, but learning another way to think about things.",
+            "The limits of my language mean the limits of my world.",
+            "One language sets you in a corridor for life. Two languages open every door along the way.",
+            "Language is the road map of a culture.",
+            "The more languages you know, the more you are human.",
+            "A different language is a different vision of life.",
+            "He who knows no foreign languages knows nothing of his own.",
+            "Learning a new language is like gaining a new soul.",
+            "Every language is a world. Without translation, we would inhabit parishes bordering on silence."
+        ];
+
+        function showDailyQuote() {
+            const el = document.getElementById('dailyQuote');
+            if (!el) return;
+
+            const today = new Date();
+            const dayNumber = Math.floor(today.getTime() / 86400000);
+            const index = dayNumber % teacherQuotes.length;
+
+            el.textContent = '"' + teacherQuotes[index] + '"';
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            fetchTeachers();
+            showDailyQuote();
+        });
 
         function fetchTeachers() {
             const grid = document.querySelector('.directory-grid');
