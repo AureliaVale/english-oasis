@@ -55,6 +55,11 @@
             100% { transform: translate(100%, 0); }
         }
 
+        /* شريط الشكر للأساتذة (يمكن حذفه لاحقاً) */
+        .marquee-thanks {
+            background-color: #e8f5e9; color: #0d5c46; border-bottom-color: #c8e6c9;
+        }
+
         .main-container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
         .page-section { display: none; }
         .page-section.active-page { display: block; }
@@ -268,6 +273,13 @@
             </ul>
         </div>
     </header>
+
+    <!-- شريط الشكر للأساتذة (احذف هذا الـ div كاملاً عند الرغبة في إزالته) -->
+    <div class="marquee-container marquee-thanks">
+        <div class="marquee-content">
+            🌴 شكرًا لأساتذتنا الكرام على انضمامهم إلى «الواحة للإنجليزية» — هذه المنصة منصتكم، ساعدونا في نشرها بين الأساتذة وأولياء التلاميذ 🌴
+        </div>
+    </div>
 
     <div class="marquee-container">
         <div class="marquee-content">
@@ -763,7 +775,7 @@
 
             const teacherName = formData.name;
             setTimeout(function () {
-                alert('شكراً لك أستاذ(ة) ' + teacherName + '!\nتم تسجيل بياناتك بنجاح.');
+                alert('شكراً لك أستاذ(ة) ' + teacherName + '!\nتم تسجيل بياناتك بنجاح.\n\nهذه المنصة منصتك، ساعدنا في نشرها بين زملائك الأساتذة وأولياء التلاميذ.');
                 document.getElementById('regForm').reset();
                 btn.disabled = false;
                 btn.textContent = 'إرسال التسجيل مباشرة';
